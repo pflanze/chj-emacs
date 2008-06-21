@@ -79,9 +79,10 @@
      auto-mode-alist))
 
 ; 
-(require 'cua)
-(CUA-mode t)
-(CUA-mode)
+;(require 'cua)
+;(load "/usr/share/emacs/site-lisp/emacs-goodies-el/cua.el")
+;(CUA-mode t)
+;(CUA-mode)
 ;; ^- in the hope that switching it off once solves the weird problems I had without it, and switching it off again makes it's key stuff away. yep it does.
 ;; need to ~reinitialize pending-delete-mode now, though: it's on but doesn't show regions, so.. switch off and on again:
 (pending-delete-mode)
@@ -229,7 +230,7 @@
 ; This fragment has been inserted by the LAML configuration program.
 ; You can delete it if you do not want it. Do not edit it, however.
 
-(load "/opt/laml/emacs-support/dot-emacs-contribution.el")
+;(load "/opt/laml/emacs-support/dot-emacs-contribution.el")
 
 ; End of LAML Emacs configuration.
 
@@ -238,6 +239,7 @@
 ; von .xemacs lombi her
 (global-set-key [(meta s)] 'save-buffer)
 
+(iswitchb-mode)
 (iswitchb-default-keybindings)
 (setq iswitchb-default-method 'samewindow) ; instead of always-frame (raise geht nicht für tty..)
 
