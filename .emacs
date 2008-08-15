@@ -318,9 +318,15 @@ it is put to the start of the list."
 (tool-bar-mode)
 ; JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
+
+(defun cj-noop ()
+  (interactive)
+  nil)
+
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
 	    (dolist (p `(;; note, muss kleinbuchstaben sein, F4 geht silently nicht !!!
+			 ([f1] . cj-noop)
 			 ;;([f4] . gambit-continue)
 			 ([f5] . gambit-crawl-backtrace-newer)
 			 ([f6] . gambit-crawl-backtrace-older)
@@ -370,6 +376,7 @@ it is put to the start of the list."
 			 ;; OOOCh vergiss: dies hier ist doch besser:
 			 ;; ESC (		insert-parentheses
 			 ;; ESC )		move-past-close-and-reindent
+			 ([f1] . cj-noop)
 			 ;; cj 14.1.06:
 			 ([f2] . insert-parentheses)
 			 ([f3] . move-past-close-and-reindent)
