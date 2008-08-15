@@ -323,20 +323,25 @@ it is put to the start of the list."
   (interactive)
   nil)
 
+(defvar cj-first-fn-block 
+  '(
+    ([f1] . cj-noop)
+    ([f2] . insert-parentheses)
+    ([f3] . move-past-close-and-reindent)
+    ([(control return)] . move-past-close-and-reindent)
+    ([f4] . up-list)
+    ))
+
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
 	    (dolist (p `(;; note, muss kleinbuchstaben sein, F4 geht silently nicht !!!
-			 ([f1] . cj-noop)
+			 ,@cj-first-fn-block
 			 ;;([f4] . gambit-continue)
 			 ([f5] . gambit-crawl-backtrace-newer)
 			 ([f6] . gambit-crawl-backtrace-older)
 			 ([f8] . gambit-step-continuation)
 			 ([f9] . gambit-leap-continuation)
 			 ;; f8 is reset to gambit-continue by someone? grr
-			 ([f2] . insert-parentheses)
-			 ([f3] . move-past-close-and-reindent)
-			 ([(control return)] . move-past-close-and-reindent)
- 			 ([f4] . up-list)
 			 ;; cj Sun, 19 Mar 2006 20:12:38 +0100: (but maybe look into Ria's paredit.el)
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
@@ -376,12 +381,7 @@ it is put to the start of the list."
 			 ;; OOOCh vergiss: dies hier ist doch besser:
 			 ;; ESC (		insert-parentheses
 			 ;; ESC )		move-past-close-and-reindent
-			 ([f1] . cj-noop)
-			 ;; cj 14.1.06:
-			 ([f2] . insert-parentheses)
-			 ([f3] . move-past-close-and-reindent)
-			 ([(control return)] . move-past-close-and-reindent)
- 			 ([f4] . up-list)
+			 ,@cj-first-fn-block
 			 ;; cj Sun, 19 Mar 2006 20:12:38 +0100: (but maybe look into Ria's paredit.el)
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
