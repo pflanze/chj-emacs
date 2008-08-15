@@ -322,15 +322,15 @@ it is put to the start of the list."
 	  (lambda()
 	    (dolist (p `(;; note, muss kleinbuchstaben sein, F4 geht silently nicht !!!
 			 ;;([f4] . gambit-continue)
-			 ([f4] . gambit-leap-continuation)
 			 ([f5] . gambit-crawl-backtrace-newer)
 			 ([f6] . gambit-crawl-backtrace-older)
-			 ([f7] . gambit-step-continuation)
-			 ([f8] . gambit-leap-continuation);; is reset to gambit-continue by someone grr
-			 ([f1] . insert-parentheses)
-			 ([f2] . move-past-close-and-reindent)
+			 ([f8] . gambit-step-continuation)
+			 ([f9] . gambit-leap-continuation)
+			 ;; f8 is reset to gambit-continue by someone? grr
+			 ([f2] . insert-parentheses)
+			 ([f3] . move-past-close-and-reindent)
 			 ([(control return)] . move-past-close-and-reindent)
- 			 ([f3] . up-list)
+ 			 ([f4] . up-list)
 			 ;; cj Sun, 19 Mar 2006 20:12:38 +0100: (but maybe look into Ria's paredit.el)
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
@@ -370,14 +370,11 @@ it is put to the start of the list."
 			 ;; OOOCh vergiss: dies hier ist doch besser:
 			 ;; ESC (		insert-parentheses
 			 ;; ESC )		move-past-close-and-reindent
-			 ;; cj 8.1.06:
-			 ([f3] . insert-parentheses)
-			 ([f4] . move-past-close-and-reindent)
 			 ;; cj 14.1.06:
-			 ([f1] . insert-parentheses)
-			 ([f2] . move-past-close-and-reindent)
+			 ([f2] . insert-parentheses)
+			 ([f3] . move-past-close-and-reindent)
 			 ([(control return)] . move-past-close-and-reindent)
- 			 ([f3] . up-list)
+ 			 ([f4] . up-list)
 			 ;; cj Sun, 19 Mar 2006 20:12:38 +0100: (but maybe look into Ria's paredit.el)
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
