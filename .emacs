@@ -97,8 +97,17 @@
 ; folding-fold-region  C-f @ C-.. stuff keybindings don't work!!!
 ; sigh.
 
+(defun cj-doublequote ()
+  (interactive)
+  (insert "\"\"")
+  (move-to-column (- (current-column) 1)))
+
 
 (global-set-key "\M-g" 'goto-line) ; quoting required!
+;(global-set-key '[(super 2)] 'foobarcj) why what how ? todo.
+;I'll use f1 instead f
+(global-set-key '[f1] 'cj-doublequote)
+
 (defun scroll-up-one ()
   (interactive) ; <bpalmer> did you remember to make it interactive?  <Riastradh> Interactive functions in elisp are horrific.
   (scroll-up 1))
@@ -325,7 +334,7 @@ it is put to the start of the list."
 
 (defvar cj-first-fn-block 
   '(
-    ([f1] . cj-noop)
+    ;;([f1] . cj-noop)
     ([f2] . up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
