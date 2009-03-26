@@ -524,3 +524,7 @@ it is put to the start of the list."
 ;    (menu-bar-mode nil))
 ;; ah und dann kam  von jemand anderm noch der tip dass man das  besser über X properties macht weil dann schon beim aufstart die bar weg isch.
 ;; und dann gibts noch scroll-bar-mode und   den bildleiste hab ich eh schon weg.
+
+
+(global-set-key [(control ?,)] 'advertised-undo)
+(global-set-key [(control ?.)] 'advertised-undo)
