@@ -32,7 +32,7 @@
  '(paren-face-mismatch ((((class color)) (:foreground "white" :background "red"))))
  '(paren-match ((t (:background "#f070ff"))))
  '(paren-mismatch ((t (:background "red"))))
- '(show-paren-match-face ((((class color)) (:background "#0070ff"))))
+ '(show-paren-match-face ((((class color)) (:background "#d8f0ff"))));;"#c0e8ff"
  '(show-paren-mismatch-face ((((class color)) (:background "red")))))
 
 ;he die obigen match farben settings ausser der letzten haben gar keine wirkung?!
