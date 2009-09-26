@@ -540,3 +540,5 @@ it is put to the start of the list."
 (global-set-key [(control ?,)] 'advertised-undo)
 (global-set-key [(control ?.)] 'advertised-undo)
 (global-set-key [(control ?-)] 'advertised-undo)
+
+(setf inhibit-splash-screen t)
