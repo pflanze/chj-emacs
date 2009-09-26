@@ -300,6 +300,14 @@ it is put to the start of the list."
 (global-set-key [(control shift iso-lefttab)] (lambda() (interactive) (other-window -1)))
 ;(global-set-key [(control shift iso-lefttab)] '(other-window -1))
 
+;(if (= emacs-major-version 23)
+;    (set-default-font
+;     ;; "fixed"
+;     ;; or same as emacs21 is using by default(?!) already:
+;     "-Adobe-Courier-Medium-R-Normal--17-120-100-100-M-100-ISO8859-1"
+;     ))
+; but, that's bad, it messes up the window, needs some multiple window resizing to recover, and the xresources window width [and height] settings are wrong too gah
+
 
 (if (= emacs-major-version 21)
     (require 'ilisp))
