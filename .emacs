@@ -411,15 +411,9 @@ it is put to the start of the list."
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
 			 ))
-	      (define-key scheme-mode-map (car p) (cdr p)))
-	    ;(define-key scheme-mode-map [(control meta x)] 'scheme-send-definition)
-
-
-	    )
+	      (define-key scheme-mode-map (car p) (cdr p))))
 	  "yes, append it"  ; YES that helps.
 	  )
-
-;
 
 
 
