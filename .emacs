@@ -413,27 +413,6 @@ it is put to the start of the list."
 			 ))
 	      (define-key scheme-mode-map (car p) (cdr p)))
 	    ;(define-key scheme-mode-map [(control meta x)] 'scheme-send-definition)
-	    ;;cj Thu, 14 Jul 2005 00:34:54 +0200
-;	    (setq scheme-font-lock-keywords-2
-;		  '(("(\\(\\(##\\)?define\\*?\\(\\(\\|-public\\|-method\\|-generic\\(-procedure\\)?\\)\\|\\(-syntax\\|-macro\\)\\|-class\\|-module\\)\\)\\>[ 	]*(?\\(\\sw+\\)?" (1 font-lock-keyword-face) (6 (cond ... ... ...) nil t))
-;		   ("(\\(annd\\|begin\\|c\\(?:a\\(?:ll\\(?:-with-\\(?:current-continuation\\|\\(?:in\\|out\\)put-file\\)\\|/cc\\)\\|se\\)\\|ond\\)\\|d\\(?:elay\\|o\\)\\|else\\|for-each\\|if\\|l\\(?:ambda\\|et\\(?:\\*\\|-syntax\\|rec\\(?:-syntax\\)?\\)?\\)\\|map\\|or\\|syntax\\(?:-rules\\)?\\)\\>" . 1)
-;		   ("\\<<\\sw+>\\>" . font-lock-type-face) 
-;		   ("\\<:\\sw+\\>" . font-lock-builtin-face)))
-	    ;; OKAYY das wars für highlighting. nun noch einrücken sigh.
-;; 	    (setq scheme-font-lock-keywords-1
-;; 		  '(("(\\(\\(##\\)?define\\*?\\(\\(\\|-public\\|-method\\|-generic\\(-procedure\\)?\\)\\|\\(-syntax\\|-macro\\)\\|-class\\|-module\\)\\)\\>[ 	]*(?\\(\\sw+\\)?" (1 font-lock-keyword-face) (6 (cond ... ... ...) nil t))))
-	    ;; nicht geholfen. noch:
-;; 	    (setq scheme-font-lock-keywords
-;; 		  '(("(\\(\\(##\\)?define\\*?\\(\\(\\|-public\\|-method\\|-generic\\(-procedure\\)?\\)\\|\\(-syntax\\|-macro\\)\\|-class\\|-module\\)\\)\\>[ 	]*(?\\(\\sw+\\)?" (1 font-lock-keyword-face) (6 (cond ... ... ...) nil t))))
-	    ;;sigh auch nicht.
-;	    (setq scheme-imenu-generic-expression
-;		  '((nil "^(\\(##\\)?define\\(\\|-\\(generic\\(\\|-procedure\\)\\|method\\)\\)*\\s-+(?\\(\\sw+\\)" 4) 
-;		    ("Types" "^(define-class\\s-+(?\\(\\sw+\\)" 1)
-;		    ("Macros" "^(\\(##\\)?\\(defmacro\\|define-macro\\|##define-macro\\|define-syntax\\)\\s-+(?\\(\\sw+\\)" 2)))
-	    ;; sicher auch gut. aber nicht für indenting.   ACHHHHHH nicht mal im imenu wirkt das?? obwohl es einwandfrei nach start noch gesetzt ist.
-;; 	    (setq lisp-imenu-generic-expression
-;; 		  '((nil "^\\s-*(\\(##\\)?def\\(un\\*?\\|subst\\|macro\\|advice\\|ine-skeleton\\|ine-minor-mode\\)\\s-+\\(\\sw\\(\\sw\\|\\s_\\)+\\)" 2) ("Variables" "^\\s-*(\\(##\\)?def\\(var\\|const\\|custom\\)\\s-+\\(\\sw\\(\\sw\\|\\s_\\)+\\)" 2) ("Types" "^\\s-*(\\(##\\)?def\\(group\\|type\\|struct\\|class\\|ine-condition\\|ine-widget\\|face\\)\\s-+'?\\(\\sw\\(\\sw\\|\\s_\\)+\\)" 2)))
-	    ;; och suck. no luck today. -Thu, 14 Jul 2005 01:00:40 +0200
 
 
 	    )
