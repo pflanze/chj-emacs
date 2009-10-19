@@ -387,9 +387,7 @@ it is put to the start of the list."
 			 ([(meta shift left)] . backward-sexp-mark) ;;cj Mon, 06 Jun 2005 20:17:58 +0200:
 
 			 ([(meta shift right)] . forward-sexp-mark) ;; damit geht es richtig aber NUR wenn pc-select zeug wie früher *aktiv* ist zusätzlich. staun.
-			 ([(control meta q)] . ,(if (= emacs-major-version 21)
-						    indent-sexp-ilisp
-						  ident-sexp))
+		       
 			 ;; MESSY
 			 ([(control meta x)] . scheme-send-definition); instead of LISP-EVAL-DEFUN. und auch nicht unbedingt scheme-send-last-sexp
 			 ([(meta ret)] . scheme-send-definition) ; weil M-Ret bisher nicht benutzt wurde, warum auch nihct?.
