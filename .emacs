@@ -249,8 +249,6 @@
 ; End of LAML Emacs configuration.
 
 
-; cj Sat, 23 Apr 2005 20:52:12 +0200
-; von .xemacs lombi her
 (global-set-key [(meta s)] 'save-buffer)
 
 (iswitchb-mode)
@@ -416,19 +414,12 @@ it is put to the start of the list."
 	  )
 
 
-
-;(require 'quack)
-
 (put 'downcase-region 'disabled nil)
 
 (put 'upcase-region 'disabled nil)
 
-
-;; cj Sun, 18 Sep 2005 15:56:14 +0200 für inferior-scheme-mode eigentlich, doch scheint dies ja eine global zu sein:
 (setq history-length 200)
 
-
-;; Fri, 29 Dec 2006 12:26:33 +0100
 (defun cj-filetim ()
   (interactive)
   (let ((tim (visited-file-modtime)))
