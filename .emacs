@@ -412,6 +412,17 @@ it is put to the start of the list."
 	  )
 
 
+;(add-hook 'latex-common-hook
+;	  (lambda()
+	    (dolist (p `(
+			 ([(meta p)] . ,(lambda ()
+				   (tex-compile "." "latex")))
+			 ))
+	      (define-key latex-mode-map (car p) (cdr p)))
+;	    )"yes, append it"
+;	    )
+
+
 (put 'downcase-region 'disabled nil)
 
 (put 'upcase-region 'disabled nil)
