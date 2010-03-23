@@ -412,11 +412,13 @@ it is put to the start of the list."
 	  )
 
 
+(defun cj-tex-compile-in-cwd ()
+  (tex-compile "." "latex"))
+
 ;(add-hook 'latex-common-hook
 ;	  (lambda()
 	    (dolist (p `(
-			 ([(meta p)] . ,(lambda ()
-				   (tex-compile "." "latex")))
+			 ([(meta p)] . cj-tex-compile-in-cwd)
 			 ))
 	      (define-key latex-mode-map (car p) (cdr p)))
 ;	    )"yes, append it"
