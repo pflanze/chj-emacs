@@ -413,7 +413,8 @@ it is put to the start of the list."
 
 
 (defun cj-tex-compile-in-cwd ()
-  (tex-compile "." "latex"))
+  (interactive)
+  (tex-compile "." (concat "latex " (buffer-file-name (current-buffer)))))
 
 ;(add-hook 'latex-common-hook
 ;	  (lambda()
