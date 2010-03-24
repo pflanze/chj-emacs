@@ -519,3 +519,14 @@ it is put to the start of the list."
 (global-set-key [(control ?-)] 'advertised-undo)
 
 (setf inhibit-splash-screen t)
+
+;; http://constantly.at/2009/05/on-line-wrapping-in-emacs-23pre/
+(if (>= emacs-major-version 23)
+    (progn
+      (setq line-move-visual nil)
+      ;; but actually just turn it off completely, for me, okay? Not
+      ;; sure I'll ever like it anywhere.
+      '(progn
+	(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+	(add-hook 'text-mode-hook
+		  (lambda () (set (make-local-variable 'line-move-visual) t))))))
