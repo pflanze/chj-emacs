@@ -415,7 +415,8 @@ it is put to the start of the list."
 (defun cj-tex-compile-in-cwd ()
   (interactive)
   (tex-compile "." (concat "latex -interaction=nonstopmode "
-			   (buffer-file-name (current-buffer)))))
+			   (shell-quote-argument
+			    (buffer-file-name (current-buffer))))))
 
 (add-hook 'latex-mode-hook
 	  (lambda()
