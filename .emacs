@@ -416,14 +416,14 @@ it is put to the start of the list."
   (interactive)
   (tex-compile "." (concat "latex " (buffer-file-name (current-buffer)))))
 
-;(add-hook 'latex-common-hook
-;	  (lambda()
+(add-hook 'latex-mode-hook
+	  (lambda()
 	    (dolist (p `(
 			 ([(meta p)] . cj-tex-compile-in-cwd)
 			 ))
 	      (define-key latex-mode-map (car p) (cdr p)))
-;	    )"yes, append it"
-;	    )
+	    )"yes, append it"
+	    )
 
 
 (put 'downcase-region 'disabled nil)
