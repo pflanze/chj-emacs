@@ -311,7 +311,8 @@ it is put to the start of the list."
     (require 'ilisp))
 (require 'cmuscheme)
 
-(require 'inf-haskell)
+(if (= emacs-major-version 23)
+    (require 'inf-haskell))
 (setq haskell-program-name "ghci")
 
 
