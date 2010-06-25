@@ -347,7 +347,6 @@ it is put to the start of the list."
 
 (defvar cj-first-fn-block 
   '(
-    ;;([f1] . cj-noop)
     ([f2] . up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
