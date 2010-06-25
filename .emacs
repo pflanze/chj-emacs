@@ -345,9 +345,14 @@ it is put to the start of the list."
   (interactive)
   nil)
 
+(defun cj-up-list ()
+  (interactive)
+  (up-list)
+  (insert " "))
+
 (defvar cj-first-fn-block 
   '(
-    ([f2] . up-list)
+    ([f2] . cj-up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
     ([(control return)] . move-past-close-and-reindent)
