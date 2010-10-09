@@ -415,23 +415,26 @@ Deprecated: use `paredit-mode' instead."
    ("M-("       paredit-wrap-round
                 ("(foo |bar baz)"
                  "(foo (|bar) baz)"))
+   ;;^ cool. warum dann unten nid ) ah weil ander taken wl. ich ding-.
    ("M-s"       paredit-splice-sexp
                 ("(foo (bar| baz) quux)"
                  "(foo bar| baz quux)"))
-   (("M-<up>" "ESC <up>")
+   (("M-<up>" "ESC <up>") ;; M-C-backspace aber da hats eh schon was brauchbares so..?
                 paredit-splice-sexp-killing-backward
                 ("(foo (let ((x 5)) |(sqrt n)) bar)"
                  "(foo (sqrt n) bar)"))
-   (("M-<down>" "ESC <down>")
+   (("M-<down>" "ESC <down>") ;; M-C-d hm aber da hab ich downlist ding. AH is gar nid das. weird ding das hier hu.
                 paredit-splice-sexp-killing-forward
                 ("(a (b c| d e) f)"
                  "(a b c f)"))
+   ;; v- weirdding
    ("M-r"       paredit-raise-sexp
                 ("(dynamic-wind in (lambda () |body) out)"
                  "(dynamic-wind in |body out)"
                  "|body"))
 
    "Barfage & Slurpage"
+   ;; v-heh
    (("C-)" "C-<right>")
                 paredit-forward-slurp-sexp
                 ("(foo (bar |baz) quux zot)"
