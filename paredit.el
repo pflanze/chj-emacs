@@ -416,7 +416,8 @@ Deprecated: use `paredit-mode' instead."
                 ("(foo |bar baz)"
                  "(foo (|bar) baz)"))
    ;;^ cool. warum dann unten nid ) ah weil ander taken wl. ich ding-.
-   ("ESC s"       paredit-splice-sexp
+   ;; M-o was some set face combo stuff.
+   ("M-o"       paredit-splice-sexp
                 ("(foo (bar| baz) quux)"
                  "(foo bar| baz quux)"))
    (("M-<up>" "ESC <up>") ;; M-C-backspace aber da hats eh schon was brauchbares so..?
