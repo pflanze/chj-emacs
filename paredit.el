@@ -294,7 +294,7 @@ Deprecated: use `paredit-mode' instead."
 (progn (setq paredit-commands
  `(
    "Basic Insertion Commands"
-   (("(" "F3")  paredit-open-round
+   ("("         paredit-open-round
                 ("(a b |c d)"
                  "(a b (|) c d)")
                 ("(foo \"bar |baz\" quux)"
@@ -303,7 +303,7 @@ Deprecated: use `paredit-mode' instead."
                 ("(a b |c   )" "(a b c)|")
                 ("; Hello,| world!"
                  "; Hello,)| world!"))
-   (("M-)" "F4")  paredit-close-round-and-newline
+   ("M-)"       paredit-close-round-and-newline
                 ("(defun f (x|  ))"
                  "(defun f (x)\n  |)")
                 ("; (Foo.|"
