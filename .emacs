@@ -39,8 +39,6 @@
 
 ;;^- pc-se* zeug muss aktiv sein damit forward-sexp-mark vorhanden ist. so komisch.
 
-;;(setq CUA-mode-emacs-bindings t) ;; cj gem. commentary von CUA mode im customize buffer. Mon, 01 Aug 2005 07:36:36 +0200.  Doch macht das c-space selection kaputt? ja wirklich MANNNN. todo mailschreiben.
-
 
 (setq auto-mode-alist
       (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
