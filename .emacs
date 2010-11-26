@@ -39,8 +39,6 @@
 
 ;;^- pc-se* zeug muss aktiv sein damit forward-sexp-mark vorhanden ist. so komisch.
 
-;; ps. blink cursor on/off ist in : Environment / Frames / !
-
 ;;(setq CUA-mode-emacs-bindings t) ;; cj gem. commentary von CUA mode im customize buffer. Mon, 01 Aug 2005 07:36:36 +0200.  Doch macht das c-space selection kaputt? ja wirklich MANNNN. todo mailschreiben.
 
 
