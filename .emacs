@@ -44,31 +44,9 @@
 ;;(setq CUA-mode-emacs-bindings t) ;; cj gem. commentary von CUA mode im customize buffer. Mon, 01 Aug 2005 07:36:36 +0200.  Doch macht das c-space selection kaputt? ja wirklich MANNNN. todo mailschreiben.
 
 
-;<dciabrin> (setq user-home (getenv "HOME"))
-;(setq load-path (cons (concat user-home "/elisp/bigloo") load-path))
-
 ;; let xemacs autoload the bee
 (autoload 'ude-compile "ude-compile" "" t)
 ;(autoload 'bee-mode "bee-mode" "bee mode" t)
-
-;(setq auto-mode-alist
-;      (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . bee-mode)
-;     auto-mode-alist))
-
-;;; this is optional. Use it to get the CEE C environment
-;(autoload 'cee-hook "cee-hook" "cee mode hooking" t)
-;(add-hook 'c-mode-common-hook (function cee-hook))
-;(add-hook 'c-mode-hook (function cee-hook))
-;;; bugloo-mode. add it after bee-mode and every other bigloo hook
-
-;(setq load-path 
-;      ; nicht join gibts ned, nicht cons weil dann müsst ich einzelelemente. sondern:
-;      (append '("/usr/local/share/emacs/21.3/site-lisp/bigloo"
-;		"/usr/local/share/emacs/site-lisp/"
-;		) load-path))
-
-;(autoload 'bug-java-mode "bug-java" "bugloo java mode" t)
-;(add-hook 'c-mode-common-hook (function bug-java-mode) t)
 
 
 ; cj:
