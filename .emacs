@@ -49,9 +49,6 @@
 ;(autoload 'bee-mode "bee-mode" "bee mode" t)
 
 
-; cj:
-; C-x o  other-window  auf c-tab binden
-
 (setq auto-mode-alist
       (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
      auto-mode-alist))
