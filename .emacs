@@ -317,7 +317,7 @@ it is put to the start of the list."
 
 
 ; for Gambit-C 4 (pre12)
-
+(load-file "~/.emacs.d/gambit.el")
 (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
 (autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
 (add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode)) ;; frage am Sun, 18 Sep 2005 01:52:32 +0200:  aha das gambit-inferior-mode ist keine variable sondern eben eine function. huere huere chaos he.grr
@@ -379,6 +379,13 @@ it is put to the start of the list."
 ;; <Lukhas> how about :
 ;; <Lukhas>  (add-hook 'inferior-scheme-mode-hook (lambda () (local-set-key (kbd "<f4>") 'gambit-continue)))  
 
+;;;   (add-to-list 'load-path "/path/to/elisp")
+(load-file "~/.emacs.d/paredit.el")
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code."
+  t)
+
+
 (add-hook 'scheme-mode-hook
 	  (lambda()
 	    (imenu-add-menubar-index)
@@ -415,7 +422,7 @@ it is put to the start of the list."
 	      (define-key scheme-mode-map (car p) (cdr p))))
 	  "yes, append it"  ; YES that helps.
 	  )
-
+(add-hook 'scheme-mode-hook (lambda () (paredit-mode +1)))
 
 (defun cj-tex-compile-in-cwd ()
   (interactive)
