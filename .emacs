@@ -347,6 +347,18 @@ it is put to the start of the list."
     ([(control return)] . move-past-close-and-reindent)
     ))
 
+
+(defun cj-set-slime-keybindings ()
+  (dolist (p `(
+	       ,@cj-first-fn-block
+	       ))
+    ;;(define-key slime-mode-map (car p) (cdr p))
+    (local-set-key (car p) (cdr p))))
+
+(add-hook 'slime-mode-hook 'cj-set-slime-keybindings t)
+(add-hook 'slime-repl-mode-hook 'cj-set-slime-keybindings t)
+(add-hook 'slime-repl-read-mode-hook 'cj-set-slime-keybindings t)
+
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
 	    (dolist (p `(;; note, muss kleinbuchstaben sein, F4 geht silently nicht !!!
