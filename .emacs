@@ -224,7 +224,7 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
 
-(fset 'yes-or-no-p 'y-or-n-p)
+;(fset 'yes-or-no-p 'y-or-n-p)
 
 
 (add-hook 'perl-mode-hook
