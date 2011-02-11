@@ -225,6 +225,10 @@
 (setq uniquify-buffer-name-style 'reverse)
 
 ;(fset 'yes-or-no-p 'y-or-n-p)
+;http://www.emacswiki.org/emacs/YesOrNoP
+;http://www.emacswiki.org/emacs/RevertBuffer
+;oder just
+(defalias 'yes-or-no-p 'y-or-n-p)
 
 
 (add-hook 'perl-mode-hook
