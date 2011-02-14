@@ -228,7 +228,21 @@
 ;http://www.emacswiki.org/emacs/YesOrNoP
 ;http://www.emacswiki.org/emacs/RevertBuffer
 ;oder just
-(defalias 'yes-or-no-p 'y-or-n-p)
+;(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; or, from http://www.emacswiki.org/emacs/RevertBuffer
+(defun revert-all-buffers ()
+  "Refreshes all open buffers from their respective files."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (and (buffer-file-name) (not (buffer-modified-p)))
+	(revert-buffer t t t) )))
+  (message "Refreshed open files.") )
+
+;; but I'd rather like that just all buffers are autoreloaded
+;; transparently, and also w/o having to activate auto-revert-mode
+;; manually? maybe. OFFEN
 
 
 (add-hook 'perl-mode-hook
