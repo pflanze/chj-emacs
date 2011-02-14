@@ -240,9 +240,7 @@
 	(revert-buffer t t t) )))
   (message "Refreshed open files.") )
 
-;; but I'd rather like that just all buffers are autoreloaded
-;; transparently, and also w/o having to activate auto-revert-mode
-;; manually? maybe. OFFEN
+;; but also see auto-revert-mode, see below in scheme-mode
 
 
 (add-hook 'perl-mode-hook
@@ -440,7 +438,10 @@ it is put to the start of the list."
 	      (define-key scheme-mode-map (car p) (cdr p))))
 	  "yes, append it"  ; YES that helps.
 	  )
-(add-hook 'scheme-mode-hook (lambda () (paredit-mode +1)))
+
+(add-hook 'scheme-mode-hook (lambda ()
+			      (paredit-mode +1)
+			      (auto-revert-mode +1)))
 
 (defun cj-tex-compile-in-cwd ()
   (interactive)
