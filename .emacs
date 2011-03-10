@@ -78,22 +78,22 @@
 ;; / SLIME48
 
 
-
 (setq auto-mode-alist
       (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
-     auto-mode-alist))
+	    auto-mode-alist))
 
-(setq auto-mode-alist
-      (cons '("\\.\\(?:clj)$" . clojure-mode)
-     auto-mode-alist))
-
-(load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
-
-(add-to-list 'load-path "/home/chrisclojure/src/slime")  ; your SLIME directory
-(setq inferior-lisp-program "lein swank") ; your Lisp system
-(require 'slime)
-(slime-setup)
-
+(if (equal (getenv "USER") "chrisclojure")
+    (progn
+      (setq auto-mode-alist
+	    (cons '("\\.\\(?:clj)$" . clojure-mode)
+		  auto-mode-alist))
+      
+      (load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
+      
+      (add-to-list 'load-path "/home/chrisclojure/src/slime")  ; your SLIME directory
+      (setq inferior-lisp-program "lein swank") ; your Lisp system
+      (require 'slime)
+      (slime-setup)))
 
 
 ; 
