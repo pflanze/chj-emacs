@@ -83,6 +83,19 @@
       (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
      auto-mode-alist))
 
+(setq auto-mode-alist
+      (cons '("\\.\\(?:clj)$" . clojure-mode)
+     auto-mode-alist))
+
+(load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
+
+(add-to-list 'load-path "/home/chrisclojure/src/slime")  ; your SLIME directory
+(setq inferior-lisp-program "lein swank") ; your Lisp system
+(require 'slime)
+(slime-setup)
+
+
+
 ; 
 ;(require 'cua)
 ;(load "/usr/share/emacs/site-lisp/emacs-goodies-el/cua.el")
