@@ -84,6 +84,9 @@
 
 (if (equal (getenv "USER") "chrisclojure")
     (progn
+      (load "/home/chrisclojure/.emacs.d/package.el")
+      (add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
       (setq auto-mode-alist
 	    (cons '("\\.\\(?:clj)$" . clojure-mode)
 		  auto-mode-alist))
