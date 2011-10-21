@@ -327,10 +327,6 @@ it is put to the start of the list."
     (require 'ilisp))
 (require 'cmuscheme)
 
-(if (= emacs-major-version 23)
-    (require 'inf-haskell))
-(setq haskell-program-name "ghci")
-
 
 ; for Gambit-C 4 (pre12)
 (load-file "~/.emacs.d/gambit.el")
@@ -550,7 +546,7 @@ it is put to the start of the list."
 (global-set-key [(control ?.)] 'advertised-undo)
 (global-set-key [(control ?-)] 'advertised-undo)
 
-(setf inhibit-splash-screen t)
+(setq inhibit-splash-screen t)
 
 ;; http://constantly.at/2009/05/on-line-wrapping-in-emacs-23pre/
 (if (>= emacs-major-version 23)
