@@ -397,7 +397,8 @@ it is put to the start of the list."
 ;; <Lukhas>  (add-hook 'inferior-scheme-mode-hook (lambda () (local-set-key (kbd "<f4>") 'gambit-continue)))  
 
 ;;;   (add-to-list 'load-path "/path/to/elisp")
-(load-file "~/.emacs.d/paredit.el")
+(if (file-exists-p "~/.emacs.d/paredit.el")
+    (load-file "~/.emacs.d/paredit.el"))
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
