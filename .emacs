@@ -473,7 +473,7 @@ it is put to the start of the list."
 
 (defun cj-curtim ()
   (interactive)
-  (insert "{" (current-time-string) "}\n"))
+  (insert "{" (current-time-string) "}"))
 
 ;(global-set-key "\C-udiaeresis" 'cj-curtim)
 ;(global-set-key "\C-ü" 'cj-curtim)
