@@ -469,7 +469,7 @@ it is put to the start of the list."
   (let ((tim (visited-file-modtime)))
     (insert "{mtime " (if (listp tim)
 			  (current-time-string tim)
-			"-") "}\n")))
+			"-") "}")))
 
 (defun cj-curtim ()
   (interactive)
