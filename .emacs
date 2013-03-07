@@ -97,6 +97,8 @@
 ; folding-fold-region  C-f @ C-.. stuff keybindings don't work!!!
 ; sigh.
 
+(require 'cl) ;; for |case|
+
 (defun cj-doublequote ()
   (interactive)
   ;; insert a space unless we are after whitespace or a left paren or bracket
