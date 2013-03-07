@@ -118,6 +118,8 @@
 ; folding-fold-region  C-f @ C-.. stuff keybindings don't work!!!
 ; sigh.
 
+(require 'cl) ;; for |case|
+
 (defun cj-doublequote ()
   (interactive)
   ;; insert a space unless we are after whitespace or a left paren or bracket
@@ -245,7 +247,23 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
 
-(fset 'yes-or-no-p 'y-or-n-p)
+;(fset 'yes-or-no-p 'y-or-n-p)
+;http://www.emacswiki.org/emacs/YesOrNoP
+;http://www.emacswiki.org/emacs/RevertBuffer
+;oder just
+;(defalias 'yes-or-no-p 'y-or-n-p)
+
+;; or, from http://www.emacswiki.org/emacs/RevertBuffer
+(defun revert-all-buffers ()
+  "Refreshes all open buffers from their respective files."
+  (interactive)
+  (dolist (buf (buffer-list))
+    (with-current-buffer buf
+      (when (and (buffer-file-name) (not (buffer-modified-p)))
+	(revert-buffer t t t) )))
+  (message "Refreshed open files.") )
+
+;; but also see auto-revert-mode, see below in scheme-mode
 
 
 (add-hook 'perl-mode-hook
@@ -331,10 +349,6 @@ it is put to the start of the list."
 (if (= emacs-major-version 21)
     (require 'ilisp))
 (require 'cmuscheme)
-
-(if (= emacs-major-version 23)
-    (require 'inf-haskell))
-(setq haskell-program-name "ghci")
 
 
 ;(customize-set-variable 'toolbar-visible-p nil)
@@ -440,7 +454,10 @@ it is put to the start of the list."
 	      (define-key scheme-mode-map (car p) (cdr p))))
 	  "yes, append it"  ; YES that helps.
 	  )
-(add-hook 'scheme-mode-hook (lambda () (paredit-mode +1)))
+
+(add-hook 'scheme-mode-hook (lambda ()
+			      (paredit-mode +1)
+			      (auto-revert-mode +1)))
 
 (defun cj-tex-compile-in-cwd ()
   (interactive)
@@ -549,7 +566,7 @@ it is put to the start of the list."
 (global-set-key [(control ?.)] 'advertised-undo)
 (global-set-key [(control ?-)] 'advertised-undo)
 
-(setf inhibit-splash-screen t)
+(setq inhibit-splash-screen t)
 
 ;; http://constantly.at/2009/05/on-line-wrapping-in-emacs-23pre/
 (if (>= emacs-major-version 23)
