@@ -351,6 +351,22 @@ it is put to the start of the list."
 (require 'cmuscheme)
 
 
+; for Gambit-C 4 (pre12)
+(load-file "~/.emacs.d/gambit.el")
+(autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
+(autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
+(add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode)) ;; frage am Sun, 18 Sep 2005 01:52:32 +0200:  aha das gambit-inferior-mode ist keine variable sondern eben eine function. huere huere chaos he.grr
+
+(add-hook 'scheme-mode-hook (function gambit-mode))
+;(setq scheme-program-name "gsi -:d-")
+;(setq scheme-program-name "gsi -:d-,t8")
+;(setq scheme-program-name "gsc -:d-,t8 -i -e '(include \"/home/chris/schemedevelopment/gambit/chj.scm\")' -")
+;(setq scheme-program-name "gsc -:d- -i -e '(include \"/home/chris/schemedevelopment/gambit/chj.scm\")' -")
+;(setq scheme-program-name "gsc -:d- -i -")
+
+;cj+ct Fri, 09 Sep 2005 17:26:05 +0200:
+(setq scheme-program-name "~/bin/gam-emacs")
+
 ;(customize-set-variable 'toolbar-visible-p nil)
 
 ;(setq default-frame-alist '((tool-bar-lines . 0) (menu-bar-lines . 1) (width . 120) (height . 50)))
