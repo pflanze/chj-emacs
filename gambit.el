@@ -1,1 +1,1 @@
-/home/rchris/install/gambc/share/emacs/site-lisp/gambit.el
+../install/gambc/share/emacs/site-lisp/gambit.el
