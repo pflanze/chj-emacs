@@ -361,6 +361,11 @@ it is put to the start of the list."
   (setq scheme-program-name "~/bin/gam-emacs"))
 
 
+(when (file-exists-p "~/.emacs.d/pretty-lambdada.el")
+  (load-file "~/.emacs.d/pretty-lambdada.el")
+  (pretty-lambda-for-modes))
+
+
 ;(customize-set-variable 'toolbar-visible-p nil)
 
 ;(setq default-frame-alist '((tool-bar-lines . 0) (menu-bar-lines . 1) (width . 120) (height . 50)))
