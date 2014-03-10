@@ -153,7 +153,7 @@
 ; latter isch ned automatisch da scheissigerweise
 ; /usr/share/doc/xslide/dot_emacs
 (autoload 'xsl-mode "xslide" "Major mode for XSL stylesheets." t)
-;; Turn on font lock when in XSL mode <--- was isch das? ç
+;; Turn on font lock when in XSL mode <--- was isch das? Ã§
 (add-hook 'xsl-mode-hook
           'turn-on-font-lock)
 (setq auto-mode-alist
@@ -217,7 +217,7 @@
 	    (define-key cperl-mode-map [(shift return)] 'newline)
 	    ;(font-lock-mode) unnecessary now since cperl-font-lock is t
 	    (imenu-add-menubar-index)
-	    ;(pending-delete-mode 1); egal ob mit oder ohne 1, nüt
+	    ;(pending-delete-mode 1); egal ob mit oder ohne 1, nÃ¼t
 	    ;(delete-selection-mode 1)
 	    ;;(pending-delete-mode t nil (pending-del)) nix ich pending-del gibtsned
 	    ;(setq transient-mark-mode t)
@@ -229,7 +229,7 @@
 ;(pending-delete-mode) mann geht nicht? war drin aber in cperl mode nichts?
 
 
-;;todo: ob dies alles nötig isch auch bei gnuem.?
+;;todo: ob dies alles nÃ¶tig isch auch bei gnuem.?
 (add-hook 'c-mode-common-hook
           (lambda ()
              (define-key c-mode-base-map [(return)] 'newline-and-indent)
@@ -292,7 +292,7 @@
 
 (iswitchb-mode)
 (iswitchb-default-keybindings)
-(setq iswitchb-default-method 'samewindow) ; instead of always-frame (raise geht nicht für tty..)
+(setq iswitchb-default-method 'samewindow) ; instead of always-frame (raise geht nicht fÃ¼r tty..)
 
 (defun iswitchb-make-buflist (default)
   "Modified version by pflanze.
@@ -369,7 +369,7 @@ it is put to the start of the list."
 ;(customize-set-variable 'toolbar-visible-p nil)
 
 ;(setq default-frame-alist '((tool-bar-lines . 0) (menu-bar-lines . 1) (width . 120) (height . 50)))
-; aber besser grösse  in .Xresources setzen: emacs*geometry: 100x45
+; aber besser grÃ¶sse  in .Xresources setzen: emacs*geometry: 100x45
 
 (tool-bar-mode)
 ; JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -437,7 +437,7 @@ it is put to the start of the list."
 	  (lambda()
 	    (imenu-add-menubar-index)
 ;	    (define-key scheme-mode-map [(return)] 
-;	      #'newline-and-indent) ; ps. MUSS quote haben. Na wir sind nicht in scheme hier, ya know. Lambda hingegen 'natürli' nöd quoten.  ah oder #' oder (function )
+;	      #'newline-and-indent) ; ps. MUSS quote haben. Na wir sind nicht in scheme hier, ya know. Lambda hingegen 'natÃ¼rli' nÃ¶d quoten.  ah oder #' oder (function )
 
 	    (dolist (p `(([(meta q)] . reindent-lisp)
 			 ([(return)] . newline-and-indent)
@@ -445,19 +445,19 @@ it is put to the start of the list."
 			 ([(meta right)] . forward-sexp)
 			 ([(meta shift left)] . backward-sexp-mark) ;;cj Mon, 06 Jun 2005 20:17:58 +0200:
 
-			 ([(meta shift right)] . forward-sexp-mark) ;; damit geht es richtig aber NUR wenn pc-select zeug wie früher *aktiv* ist zusätzlich. staun.
+			 ([(meta shift right)] . forward-sexp-mark) ;; damit geht es richtig aber NUR wenn pc-select zeug wie frÃ¼her *aktiv* ist zusÃ¤tzlich. staun.
 		       
 			 ;; MESSY
 			 ([(control meta x)] . scheme-send-definition); instead of LISP-EVAL-DEFUN. und auch nicht unbedingt scheme-send-last-sexp
 			 ([(meta ret)] . scheme-send-definition) ; weil M-Ret bisher nicht benutzt wurde, warum auch nihct?.
 			 ;([(control meta z)] .  todo
 			 ;([(return)] . newline-and-indent) schon oben.
-			 ([(shift return)] . newline) ; weil global nicht möglich vgl komentar global-set-key
+			 ([(shift return)] . newline) ; weil global nicht mÃ¶glich vgl komentar global-set-key
 
 			 ;; Sun, 18 Sep 2005 01:21:41 +0200
-			 ;;ah NICHT hier die bindings für debugger unterbringen. diese hier sind nur für editing scheme files mode. !!!!
+			 ;;ah NICHT hier die bindings fÃ¼r debugger unterbringen. diese hier sind nur fÃ¼r editing scheme files mode. !!!!
 			 ;; Mon, 31 Oct 2005 02:30:46 +0100
-			 ;;([f7] .  wollte "(" einfügen und bei f7 ")"
+			 ;;([f7] .  wollte "(" einfÃ¼gen und bei f7 ")"
 			 ;; OOOCh vergiss: dies hier ist doch besser:
 			 ;; ESC (		insert-parentheses
 			 ;; ESC )		move-past-close-and-reindent
@@ -508,11 +508,11 @@ it is put to the start of the list."
   (insert "{" (current-time-string) "}"))
 
 ;(global-set-key "\C-udiaeresis" 'cj-curtim)
-;(global-set-key "\C-ü" 'cj-curtim)
-;(global-set-key "\C-¨" 'cj-filetim)
+;(global-set-key "\C-Ã¼" 'cj-curtim)
+;(global-set-key "\C-Â¨" 'cj-filetim)
 ;achgehendochnich. aber so eher:
-;(global-set-key [(control ü)] 'cj-curtim)
-;(global-set-key [(control ¨)] 'cj-filetim)
+;(global-set-key [(control Ã¼)] 'cj-curtim)
+;(global-set-key [(control Â¨)] 'cj-filetim)
 ;ehr??
 
 (defun cj-tim (u)
@@ -573,7 +573,7 @@ it is put to the start of the list."
 ;; yegge:
 ;(if (fboundp 'menu-bar-mode) ;; weil xemacs das nid hat "??!!!??"
 ;    (menu-bar-mode nil))
-;; ah und dann kam  von jemand anderm noch der tip dass man das  besser über X properties macht weil dann schon beim aufstart die bar weg isch.
+;; ah und dann kam  von jemand anderm noch der tip dass man das  besser Ã¼ber X properties macht weil dann schon beim aufstart die bar weg isch.
 ;; und dann gibts noch scroll-bar-mode und   den bildleiste hab ich eh schon weg.
 
 
