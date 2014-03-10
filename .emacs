@@ -384,12 +384,18 @@ it is put to the start of the list."
   (up-list)
   (insert " "))
 
+(defun cj-type-lambda ()
+  (interactive)
+  (insert "lambda"))
+
+
 (defvar cj-first-fn-block 
   '(
     ([f2] . cj-up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
     ([(control return)] . move-past-close-and-reindent)
+    ("ł" . cj-type-lambda)
     ))
 
 
