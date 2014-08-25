@@ -358,7 +358,7 @@ it is put to the start of the list."
   (autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
   (add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
   (add-hook 'scheme-mode-hook (function gambit-mode))
-  (setq scheme-program-name "~/bin/gam-emacs"))
+  (setq scheme-program-name "loop -c ~/bin/gam-emacs"))
 
 
 (when (file-exists-p "~/.emacs.d/pretty-lambdada.el")
