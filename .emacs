@@ -388,6 +388,11 @@ it is put to the start of the list."
   (interactive)
   (insert "lambda"))
 
+(defun cj-type-lambda-form ()
+  (interactive)
+  (insert "(lambda ())")
+  (backward-char-nomark 2))
+
 
 (defvar cj-first-fn-block 
   '(
@@ -395,8 +400,8 @@ it is put to the start of the list."
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
     ([(control return)] . move-past-close-and-reindent)
-    ("ł" . cj-type-lambda)
-    ))
+    ("ł" . cj-type-lambda-form)
+    ("Ł" . cj-type-lambda)))
 
 
 (defun cj-set-slime-keybindings ()
