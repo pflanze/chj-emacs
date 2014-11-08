@@ -185,36 +185,20 @@
 
 (add-hook 'cperl-mode-hook
 	  (lambda () 
-	    (define-key cperl-mode-map [(return)] (lambda () (interactive) (cperl-indent-command) (newline-and-indent)))
+	    (define-key cperl-mode-map [(return)]
+	      (lambda () (interactive) (cperl-indent-command) (newline-and-indent)))
 	    (define-key cperl-mode-map [(shift return)] 'newline)
-	    ;(font-lock-mode) unnecessary now since cperl-font-lock is t
-	    (imenu-add-menubar-index)
-	    ;(pending-delete-mode 1); egal ob mit oder ohne 1, nüt
-	    ;(delete-selection-mode 1)
-	    ;;(pending-delete-mode t nil (pending-del)) nix ich pending-del gibtsned
-	    ;(setq transient-mark-mode t)
-	    ;(require 'pending-del)  (pending-delete-on nil)  
-	    ))
-
-; noch mehr
-;(column-number-mode 1)
-;(pending-delete-mode) mann geht nicht? war drin aber in cperl mode nichts?
+	    (imenu-add-menubar-index)))
 
 
-;;todo: ob dies alles nötig isch auch bei gnuem.?
 (add-hook 'c-mode-common-hook
           (lambda ()
              (define-key c-mode-base-map [(return)] 'newline-and-indent)
              (define-key c-mode-base-map [(shift return)] 'newline)
              (setq c-basic-offset 4)
-             (font-lock-mode) ; =syntax hilighting, sigh
-             (imenu-add-menubar-index)
-             )
-          )
+             (font-lock-mode)
+             (imenu-add-menubar-index)))
 
-;(global-set-key [(return)] 'newline-and-indent)
-;(global-set-key [(shift return)] 'newline)
-; argh, das bekommt dem gnu emacs nicht?! macht minibuffer futsch
 
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
