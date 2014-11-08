@@ -124,8 +124,10 @@
   (interactive)
   ;; insert a space unless we are after whitespace or a left paren or bracket
   (case (char-before)
-    ((?( ? ?\n ?\t) nil) ;; ugh emacs doesn't understand it's own syntax? (paren matching broken)
-     (t 
+    ((?( ? ?\n ?\t) 
+      nil)
+    ;; huh, paren matcher in elisp mode doesn't handle this syntax right
+    (t 
       (insert " ")))
   (insert "\"\"")
   (move-to-column (- (current-column) 1)))
