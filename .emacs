@@ -183,6 +183,16 @@
 (setq cperl-hairy t)
 
 
+(add-hook 'perl-mode-hook
+	  (lambda () 
+	    (define-key perl-mode-map [(return)] 
+	      (lambda () (interactive)
+		(perl-indent-command)
+		(newline-and-indent)))
+	    (define-key perl-mode-map [(shift return)] 'newline)
+	    (font-lock-mode)
+	    (imenu-add-menubar-index)))
+
 (add-hook 'cperl-mode-hook
 	  (lambda () 
 	    (define-key cperl-mode-map [(return)]
@@ -215,17 +225,6 @@
   (message "Refreshed open files.") )
 
 ;; but also see auto-revert-mode, see below in scheme-mode
-
-
-(add-hook 'perl-mode-hook
-	  (lambda () 
-	    (define-key perl-mode-map [(return)] 
-	      (lambda () (interactive)
-		(perl-indent-command)
-		(newline-and-indent)))
-	    (define-key perl-mode-map [(shift return)] 'newline)
-	    (font-lock-mode)
-	    (imenu-add-menubar-index)))
 
 
 ; Load the LAML Emacs support.
