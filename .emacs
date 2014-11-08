@@ -227,15 +227,6 @@
 ;; but also see auto-revert-mode, see below in scheme-mode
 
 
-; Load the LAML Emacs support.
-; This fragment has been inserted by the LAML configuration program.
-; You can delete it if you do not want it. Do not edit it, however.
-
-;(load "/opt/laml/emacs-support/dot-emacs-contribution.el")
-
-; End of LAML Emacs configuration.
-
-
 (global-set-key [(meta s)] 'save-buffer)
 
 (iswitchb-mode)
