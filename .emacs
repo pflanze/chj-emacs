@@ -164,31 +164,6 @@
 ;(abbrev-mode t)
 
 
-; 17.6.04:
-; http://www.emacswiki.org/cgi-bin/wiki/WikifiedEmacsLispList
-;  -> http://yersinia.org/homes/paolino/emacs/multi-mode-mode.el
-
-;; (autoload 'multi-mode
-;;   ;"multi-mode" cj:
-;;   "/usr/local/share/emacs/site-lisp/multi-mode-mode.el"
-;;   "Allowing multiple major modes in a buffer."
-;;   t)
-;(require 'multi-mode-mode)
-;(defalias 'multi-mode multi-mode-mode)
-;(defalias 'multi-mode 'multi-mode-mode)
-; nein sondern:
-;(multi-mode-mode 1)
-; geht eh nicht funk
-
-;  http://www.hisemailaddress.org/ver1/downloads/.emacs
-
-;; (defun xsp-mode () (interactive)
-;;   (multi-mode 1
-;; 	      'xml-mode
-;; 	      '("<xsp:logic>" perl-mode)
-;; 	      '("</xsp:logic>" xml-mode)))
-
-
 ; http://www.emacswiki.org/cgi-bin/wiki/CPerlMode
 ; http://www.emacswiki.org/cgi-bin/wiki/IndentingPerl
 
