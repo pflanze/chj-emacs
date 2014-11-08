@@ -317,7 +317,7 @@ it is put to the start of the list."
 
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
-	    (dolist (p `(;; note, muss kleinbuchstaben sein, F4 geht silently nicht !!!
+	    (dolist (p `(;; note, F4 does not work, f4 does
 			 ,@cj-first-fn-block
 			 ;;([f4] . gambit-continue)
 			 ([f5] . gambit-crawl-backtrace-newer)
