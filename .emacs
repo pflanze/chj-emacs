@@ -295,6 +295,7 @@ it is put to the start of the list."
 
 (defun cj-scheme-load-buffer ()
   (interactive)
+  (save-buffer)
   (scheme-load-file (buffer-file-name)))
 
 (defvar cj-first-fn-block 
