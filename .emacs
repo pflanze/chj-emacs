@@ -481,11 +481,14 @@ it is put to the start of the list."
 
 ;; /parenface
 
-;; yegge:
-;(if (fboundp 'menu-bar-mode) ;; weil xemacs das nid hat "??!!!??"
-;    (menu-bar-mode nil))
-;; ah und dann kam  von jemand anderm noch der tip dass man das  besser über X properties macht weil dann schon beim aufstart die bar weg isch.
-;; und dann gibts noch scroll-bar-mode und   den bildleiste hab ich eh schon weg.
+
+;; Use less screen estate (from Yegge)
+(if (fboundp 'menu-bar-mode)
+    (menu-bar-mode nil))
+;; But, tip to do that through X properties so that the bar is disabled
+;; during start up already.
+
+;; Then there's also scroll-bar-mode.
 
 
 (global-set-key [(control ?,)] 'advertised-undo)
