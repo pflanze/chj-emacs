@@ -424,11 +424,8 @@ it is put to the start of the list."
 
 (defface paren-face
     '((((class color))
-       (:foreground ;;"dimgray"
-	;;"#c070e0" zu violettlich
-	;;"#a0c0ff" zu hell
-	"#80a0ff" ;; yeah  well vielleicht zu schwach
-	)))
+       (:foreground
+	"#80a0ff")))
   "Face for displaying a paren."
   :group 'faces)
 
