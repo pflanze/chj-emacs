@@ -326,24 +326,10 @@ it is put to the start of the list."
                 ))
           buflist)))
 
-;(; imenu einschalten: (Wed,  3 Jul 2002 18:07:20 +0200)
-; (global-set-key [(control c) i] 'imenu)
-;)
-
-
-
 (global-set-key [(control tab)] 'other-window)
 ;(global-set-key [(control shift tab)] (lambda() (other-window -1)))
 (global-set-key [(control shift iso-lefttab)] (lambda() (interactive) (other-window -1)))
 ;(global-set-key [(control shift iso-lefttab)] '(other-window -1))
-
-;(if (= emacs-major-version 23)
-;    (set-default-font
-;     ;; "fixed"
-;     ;; or same as emacs21 is using by default(?!) already:
-;     "-Adobe-Courier-Medium-R-Normal--17-120-100-100-M-100-ISO8859-1"
-;     ))
-; but, that's bad, it messes up the window, needs some multiple window resizing to recover, and the xresources window width [and height] settings are wrong too gah
 
 
 (if (= emacs-major-version 21)
@@ -424,11 +410,8 @@ it is put to the start of the list."
 			 ([(control meta n)] . up-list)
 			 ))
 	      (define-key inferior-scheme-mode-map (car p) (cdr p)))
-	    "yes, append it"  ; see below  warum auch immer das war
-	    ))
-;; ps.:
-;; <Lukhas> how about :
-;; <Lukhas>  (add-hook 'inferior-scheme-mode-hook (lambda () (local-set-key (kbd "<f4>") 'gambit-continue)))  
+	    "yes, append it"))
+
 
 ;;;   (add-to-list 'load-path "/path/to/elisp")
 (if (file-exists-p "~/.emacs.d/paredit.el")
@@ -441,39 +424,23 @@ it is put to the start of the list."
 (add-hook 'scheme-mode-hook
 	  (lambda()
 	    (imenu-add-menubar-index)
-;	    (define-key scheme-mode-map [(return)] 
-;	      #'newline-and-indent) ; ps. MUSS quote haben. Na wir sind nicht in scheme hier, ya know. Lambda hingegen 'natürli' nöd quoten.  ah oder #' oder (function )
 
 	    (dolist (p `(([(meta q)] . reindent-lisp)
 			 ([(return)] . newline-and-indent)
 			 ([(meta left)] . backward-sexp)
 			 ([(meta right)] . forward-sexp)
-			 ([(meta shift left)] . backward-sexp-mark) ;;cj Mon, 06 Jun 2005 20:17:58 +0200:
-
-			 ([(meta shift right)] . forward-sexp-mark) ;; damit geht es richtig aber NUR wenn pc-select zeug wie früher *aktiv* ist zusätzlich. staun.
-		       
-			 ;; MESSY
-			 ([(control meta x)] . scheme-send-definition); instead of LISP-EVAL-DEFUN. und auch nicht unbedingt scheme-send-last-sexp
-			 ([(meta ret)] . scheme-send-definition) ; weil M-Ret bisher nicht benutzt wurde, warum auch nihct?.
-			 ;([(control meta z)] .  todo
-			 ;([(return)] . newline-and-indent) schon oben.
-			 ([(shift return)] . newline) ; weil global nicht möglich vgl komentar global-set-key
-
-			 ;; Sun, 18 Sep 2005 01:21:41 +0200
-			 ;;ah NICHT hier die bindings für debugger unterbringen. diese hier sind nur für editing scheme files mode. !!!!
-			 ;; Mon, 31 Oct 2005 02:30:46 +0100
-			 ;;([f7] .  wollte "(" einfügen und bei f7 ")"
-			 ;; OOOCh vergiss: dies hier ist doch besser:
-			 ;; ESC (		insert-parentheses
-			 ;; ESC )		move-past-close-and-reindent
+			 ([(meta shift left)] . backward-sexp-mark)
+			 ([(meta shift right)] . forward-sexp-mark)
+			 ([(control meta x)] . scheme-send-definition)
+			 ([(meta ret)] . scheme-send-definition)
+			 ([(shift return)] . newline)
 			 ,@cj-first-fn-block
-			 ;; cj Sun, 19 Mar 2006 20:12:38 +0100: (but maybe look into Ria's paredit.el)
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
 			 ))
 	      (define-key scheme-mode-map (car p) (cdr p))))
-	  "yes, append it"  ; YES that helps.
-	  )
+	  "yes, append it")
+
 
 (add-hook 'scheme-mode-hook (lambda ()
 			      (paredit-mode +1)
