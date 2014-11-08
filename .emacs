@@ -109,14 +109,6 @@
 (pending-delete-mode)
 (pending-delete-mode)
 
-;; folding-mode doesn't work on first attempt to switch it on, so try to switch on once for frer?:
-;(folding-mode)
-;(folding-mode)
-; doesn't help
-;ah, folding-add-to-marks-list  is better. asks for what to use. ah wohl reason for failure
-
-; folding-fold-region  C-f @ C-.. stuff keybindings don't work!!!
-; sigh.
 
 (require 'cl) ;; for |case|
 
