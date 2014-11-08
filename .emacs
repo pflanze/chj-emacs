@@ -366,13 +366,7 @@ it is put to the start of the list."
   (pretty-lambda-for-modes))
 
 
-;(customize-set-variable 'toolbar-visible-p nil)
-
-;(setq default-frame-alist '((tool-bar-lines . 0) (menu-bar-lines . 1) (width . 120) (height . 50)))
-; aber besser grösse  in .Xresources setzen: emacs*geometry: 100x45
-
 (tool-bar-mode)
-; JAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 
 
 (defun cj-noop ()
