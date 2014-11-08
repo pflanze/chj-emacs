@@ -293,12 +293,16 @@ it is put to the start of the list."
   (insert "(lambda ())")
   (backward-char-nomark 2))
 
+(defun cj-scheme-load-buffer ()
+  (interactive)
+  (scheme-load-file (buffer-file-name)))
 
 (defvar cj-first-fn-block 
   '(
     ([f2] . cj-up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
+    ([f5] . cj-scheme-load-buffer)
     ([(control return)] . move-past-close-and-reindent)
     ("ł" . cj-type-lambda-form)
     ("Ł" . cj-type-lambda)))
@@ -319,8 +323,7 @@ it is put to the start of the list."
 	  (lambda()
 	    (dolist (p `(;; note, F4 does not work, f4 does
 			 ,@cj-first-fn-block
-			 ;;([f4] . gambit-continue)
-			 ([f5] . gambit-crawl-backtrace-newer)
+			 ;; [f5] used in cj-first-fn-block. XX remove those, too?:
 			 ([f6] . gambit-crawl-backtrace-older)
 			 ([f8] . gambit-step-continuation)
 			 ([f9] . gambit-leap-continuation)
