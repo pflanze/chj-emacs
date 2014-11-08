@@ -225,9 +225,7 @@
 		(newline-and-indent)))
 	    (define-key perl-mode-map [(shift return)] 'newline)
 	    (font-lock-mode)
-	    (imenu-add-menubar-index)
-	    ))
-;trarig
+	    (imenu-add-menubar-index)))
 
 
 ; Load the LAML Emacs support.
