@@ -409,7 +409,7 @@ it is put to the start of the list."
 
 
 
-;; parenface
+;; ==== parenface ==================================================
 ;; (von http://foldr.org/~michaelw/log/programming/lisp/lispin von haskell.org)
 ;;http://www.uncommon-sense.net/interests/programming/parenface.el
 
@@ -449,7 +449,7 @@ it is put to the start of the list."
 
 (provide 'parenface)
 
-;; /parenface
+;; /parenface ========================================================
 
 
 ;; Use less screen estate (from Yegge)
