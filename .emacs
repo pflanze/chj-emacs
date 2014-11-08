@@ -133,13 +133,12 @@
   (move-to-column (- (current-column) 1)))
 
 
-(global-set-key "\M-g" 'goto-line) ; quoting required!
-;(global-set-key '[(super 2)] 'foobarcj) why what how ? todo.
-;I'll use f1 instead f
+(global-set-key "\M-g" 'goto-line)
 (global-set-key '[f1] 'cj-doublequote)
 
+
 (defun scroll-up-one ()
-  (interactive) ; <bpalmer> did you remember to make it interactive?  <Riastradh> Interactive functions in elisp are horrific.
+  (interactive)
   (scroll-up 1))
 (defun scroll-down-one ()
   (interactive)
@@ -150,12 +149,8 @@
 
 (global-set-key "\C-v" 'scroll-up)
 
-; 17.6.04:
-; entweder mit nxml-mode, oder xslide
-; latter isch ned automatisch da scheissigerweise
-; /usr/share/doc/xslide/dot_emacs
+
 (autoload 'xsl-mode "xslide" "Major mode for XSL stylesheets." t)
-;; Turn on font lock when in XSL mode <--- was isch das? ç
 (add-hook 'xsl-mode-hook
           'turn-on-font-lock)
 (setq auto-mode-alist
