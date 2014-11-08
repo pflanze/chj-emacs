@@ -399,14 +399,6 @@ it is put to the start of the list."
   (interactive)
   (insert "{" (current-time-string) "}"))
 
-;(global-set-key "\C-udiaeresis" 'cj-curtim)
-;(global-set-key "\C-ü" 'cj-curtim)
-;(global-set-key "\C-¨" 'cj-filetim)
-;achgehendochnich. aber so eher:
-;(global-set-key [(control ü)] 'cj-curtim)
-;(global-set-key [(control ¨)] 'cj-filetim)
-;ehr??
-
 (defun cj-tim (u)
   (interactive "P");; "p" does not work actually!
   (if u
