@@ -99,11 +99,6 @@
       (slime-setup)))
 
 
-;; XX was that only for after loading CUA mode?:
-(pending-delete-mode)
-(pending-delete-mode)
-
-
 (require 'cl) ;; for |case|
 
 (defun cj-doublequote ()
