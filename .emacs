@@ -99,13 +99,7 @@
       (slime-setup)))
 
 
-; 
-;(require 'cua)
-;(load "/usr/share/emacs/site-lisp/emacs-goodies-el/cua.el")
-;(CUA-mode t)
-;(CUA-mode)
-;; ^- in the hope that switching it off once solves the weird problems I had without it, and switching it off again makes it's key stuff away. yep it does.
-;; need to ~reinitialize pending-delete-mode now, though: it's on but doesn't show regions, so.. switch off and on again:
+;; XX was that only for after loading CUA mode?:
 (pending-delete-mode)
 (pending-delete-mode)
 
