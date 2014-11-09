@@ -148,19 +148,8 @@
 ; http://www.emacswiki.org/cgi-bin/wiki/CPerlMode
 ; http://www.emacswiki.org/cgi-bin/wiki/IndentingPerl
 
-;(defalias 'perl-mode 'cperl-mode)
-; ^- schlussendlich ist es simpel und einfach der cperl mode an sich, der pending-delete nicht funktionnieren lasst
-
 (setq cperl-indent-level 4)
 (setq cperl-font-lock t)
-;; (setq cperl-electric-lbrace-space t)
-;; ; ^-?
-;; (setq cperl-electric-parens t)
-;; (setq cperl-electric-linefeed t)
-;; (setq cperl-electric-keywords t)
-
-;(setq cperl-highlight-variables-indiscriminately t) 
-; ^- It's not working with cperl-mode 4.23 as shiped with emacs. Get some newer version.
 (setq cperl-hairy t)
 
 
