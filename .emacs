@@ -201,7 +201,8 @@
 
 (iswitchb-mode)
 (iswitchb-default-keybindings)
-(setq iswitchb-default-method 'samewindow) ; instead of always-frame (raise geht nicht für tty..)
+(setq iswitchb-default-method 'samewindow)
+;; ^ instead of always-frame (raise does not work for tty..)
 
 (defun iswitchb-make-buflist (default)
   "Modified version by pflanze.
