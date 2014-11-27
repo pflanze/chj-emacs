@@ -180,6 +180,10 @@
              (imenu-add-menubar-index)))
 
 
+(when (file-exists-p "~/src/arduino-mode/arduino-mode.el")
+  (load-file "~/src/arduino-mode/arduino-mode.el"))
+
+
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
 
