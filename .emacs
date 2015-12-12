@@ -204,7 +204,7 @@
 (global-set-key [(meta s)] 'save-buffer)
 
 (iswitchb-mode)
-(iswitchb-default-keybindings)
+;; (iswitchb-default-keybindings)  not available anymore in emacs24
 (setq iswitchb-default-method 'samewindow)
 ;; ^ instead of always-frame (raise does not work for tty..)
 
