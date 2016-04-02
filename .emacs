@@ -266,7 +266,7 @@ it is put to the start of the list."
   (pretty-lambda-for-modes))
 
 
-(tool-bar-mode)
+(tool-bar-mode 0)
 
 
 (defun cj-noop ()
