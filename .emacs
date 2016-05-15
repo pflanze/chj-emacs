@@ -260,6 +260,10 @@ it is put to the start of the list."
   (add-hook 'scheme-mode-hook (function gambit-mode))
   (setq scheme-program-name "loop -c ~/bin/gam-emacs"))
 
+;; for julia
+(when (file-exists-p "~/.emacs.d/julia-mode.el")
+  (load-file "~/.emacs.d/julia-mode.el"))
+
 
 (when (file-exists-p "~/.emacs.d/pretty-lambdada.el")
   (load-file "~/.emacs.d/pretty-lambdada.el")
