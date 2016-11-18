@@ -299,7 +299,7 @@ it is put to the start of the list."
   (scheme-load-file (buffer-file-name)))
 
 (defvar cj-first-fn-block 
-  '(
+  '(;; note, F4 does not work, f4 does
     ([f2] . cj-up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
@@ -322,14 +322,7 @@ it is put to the start of the list."
 
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
-	    (dolist (p `(;; note, F4 does not work, f4 does
-			 ,@cj-first-fn-block
-			 ;; [f5] used in cj-first-fn-block. XX remove those, too?:
-			 ([f6] . gambit-crawl-backtrace-older)
-			 ([f8] . gambit-step-continuation)
-			 ([f9] . gambit-leap-continuation)
-			 ;; f8 is reset to gambit-continue by someone? grr
-			 ;; cj Sun, 19 Mar 2006 20:12:38 +0100: (but maybe look into Ria's paredit.el)
+	    (dolist (p `(,@cj-first-fn-block
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
 			 ))
