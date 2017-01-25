@@ -148,19 +148,8 @@
 ; http://www.emacswiki.org/cgi-bin/wiki/CPerlMode
 ; http://www.emacswiki.org/cgi-bin/wiki/IndentingPerl
 
-;(defalias 'perl-mode 'cperl-mode)
-; ^- schlussendlich ist es simpel und einfach der cperl mode an sich, der pending-delete nicht funktionnieren lasst
-
 (setq cperl-indent-level 4)
 (setq cperl-font-lock t)
-;; (setq cperl-electric-lbrace-space t)
-;; ; ^-?
-;; (setq cperl-electric-parens t)
-;; (setq cperl-electric-linefeed t)
-;; (setq cperl-electric-keywords t)
-
-;(setq cperl-highlight-variables-indiscriminately t) 
-; ^- It's not working with cperl-mode 4.23 as shiped with emacs. Get some newer version.
 (setq cperl-hairy t)
 
 
@@ -191,6 +180,10 @@
              (imenu-add-menubar-index)))
 
 
+(when (file-exists-p "~/src/arduino-mode/arduino-mode.el")
+  (load-file "~/src/arduino-mode/arduino-mode.el"))
+
+
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'reverse)
 
@@ -211,8 +204,9 @@
 (global-set-key [(meta s)] 'save-buffer)
 
 (iswitchb-mode)
-(iswitchb-default-keybindings)
-(setq iswitchb-default-method 'samewindow) ; instead of always-frame (raise geht nicht für tty..)
+;; (iswitchb-default-keybindings)  not available anymore in emacs24
+(setq iswitchb-default-method 'samewindow)
+;; ^ instead of always-frame (raise does not work for tty..)
 
 (defun iswitchb-make-buflist (default)
   "Modified version by pflanze.
@@ -266,13 +260,17 @@ it is put to the start of the list."
   (add-hook 'scheme-mode-hook (function gambit-mode))
   (setq scheme-program-name "loop -c ~/bin/gam-emacs"))
 
+;; for julia
+(when (file-exists-p "~/.emacs.d/julia-mode.el")
+  (load-file "~/.emacs.d/julia-mode.el"))
+
 
 (when (file-exists-p "~/.emacs.d/pretty-lambdada.el")
   (load-file "~/.emacs.d/pretty-lambdada.el")
   (pretty-lambda-for-modes))
 
 
-(tool-bar-mode)
+(tool-bar-mode 0)
 
 
 (defun cj-noop ()
