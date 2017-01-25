@@ -296,12 +296,18 @@ it is put to the start of the list."
   (save-buffer)
   (scheme-load-file (buffer-file-name)))
 
+(defun cj-wget-repl ()
+  (interactive)
+  (shell-command "daemonize --bg -q 'wget http://127.0.0.1/cgi-bin/scmcgi/repl'"))
+
+
 (defvar cj-first-fn-block 
   '(;; note, F4 does not work, f4 does
     ([f2] . cj-up-list)
     ([f3] . insert-parentheses)
     ([f4] . move-past-close-and-reindent)
     ([f5] . cj-scheme-load-buffer)
+    ([f6] . cj-wget-repl)
     ([(control return)] . move-past-close-and-reindent)
     ("ł" . cj-type-lambda-form)
     ("Ł" . cj-type-lambda)))
