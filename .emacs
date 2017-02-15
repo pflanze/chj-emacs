@@ -86,7 +86,7 @@
 	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
 	     auto-mode-alist))
 
-(setq-default indent-tabs-mode nil)
+;;(setq-default indent-tabs-mode nil)
 
 
 (if (equal (getenv "USER") "chrisclojure")
@@ -157,6 +157,10 @@
 (setq cperl-font-lock t)
 (setq cperl-hairy t)
 
+
+(add-hook 'markdown-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)))
 
 (add-hook 'perl-mode-hook
 	  (lambda () 
