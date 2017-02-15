@@ -93,6 +93,9 @@
 	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
 	     auto-mode-alist))
 
+(setq-default indent-tabs-mode nil)
+
+
 (if (equal (getenv "USER") "chrisclojure")
     (progn
       (load "/home/chrisclojure/.emacs.d/package.el")
