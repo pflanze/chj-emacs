@@ -175,7 +175,8 @@
           (lambda ()
              (define-key c-mode-base-map [(return)] 'newline-and-indent)
              (define-key c-mode-base-map [(shift return)] 'newline)
-             (setq c-basic-offset 4)
+	     (setq c-basic-offset 8) ;; default is 2!
+	     (setq c-default-style "linux") ;; default anyway?
              (font-lock-mode)
              (imenu-add-menubar-index)))
 
