@@ -77,19 +77,12 @@
                            (princ scheme48-package)))))))
 ;; / SLIME48
 
-(defun cons** (l)
-  (if (null (cdr l))
-      (car l)
-    (cons (car l) (cons** (cdr l)))))
 
-(defun cons* (&rest args)
-  (if (consp args)
-      (cons** args)
-    (error "cons* requires at least 1 argument")))
+(require 'cl) ;; for |case| and |list*|
 
 
 (setq auto-mode-alist
-      (cons* '("\\.md$" . markdown-mode)
+      (list* '("\\.md$" . markdown-mode)
 	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
 	     auto-mode-alist))
 
@@ -112,8 +105,6 @@
       (require 'slime)
       (slime-setup)))
 
-
-(require 'cl) ;; for |case|
 
 (defun cj-doublequote ()
   (interactive)
