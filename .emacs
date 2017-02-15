@@ -79,8 +79,9 @@
 
 
 (setq auto-mode-alist
-      (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
-	    auto-mode-alist))
+      (cons '("\\.md$" . markdown-mode)
+       (cons '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
+	     auto-mode-alist)))
 
 (if (equal (getenv "USER") "chrisclojure")
     (progn
