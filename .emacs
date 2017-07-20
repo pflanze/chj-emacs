@@ -488,3 +488,8 @@ it is put to the start of the list."
 	(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
 	(add-hook 'text-mode-hook
 		  (lambda () (set (make-local-variable 'line-move-visual) t))))))
+
+
+;; had this (well, or equivalent/similar) in xemacs
+(setq enable-recursive-minibuffers t)
+
