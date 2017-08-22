@@ -493,3 +493,9 @@ it is put to the start of the list."
 ;; had this (well, or equivalent/similar) in xemacs
 (setq enable-recursive-minibuffers t)
 
+;; and, disable multi-line, since that "wobbles around" too much
+;; visually for me
+(setq resize-mini-windows nil)
+;; <fsbot> A value of nil means don't automatically resize mini-windows.
+;; <fsbot> A value of t means resize them to fit the text displayed in them.
+;; <fsbot> A value of `grow-only', the default, means let mini-windows grow only;
