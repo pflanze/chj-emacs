@@ -122,6 +122,10 @@
 (global-set-key "\M-g" 'goto-line)
 (global-set-key '[f1] 'cj-doublequote)
 
+(global-set-key (kbd "M-§") (lambda (&optional _foo)
+			      (interactive)
+			      (server-edit)))
+
 
 (defun scroll-up-one ()
   (interactive)
