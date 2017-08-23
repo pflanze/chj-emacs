@@ -503,3 +503,6 @@ it is put to the start of the list."
 ;; <fsbot> A value of nil means don't automatically resize mini-windows.
 ;; <fsbot> A value of t means resize them to fit the text displayed in them.
 ;; <fsbot> A value of `grow-only', the default, means let mini-windows grow only;
+
+;; X window (frame) title:
+(setq frame-title-format (list user-login-name "@" system-name ": %b"))
