@@ -506,3 +506,8 @@ it is put to the start of the list."
 
 ;; X window (frame) title:
 (setq frame-title-format (list user-login-name "@" system-name ": %b"))
+
+;; emacs25 requires this so as not to duplicate all input lines in
+;; inferior-scheme mode:
+(setq comint-process-echoes t)
+
