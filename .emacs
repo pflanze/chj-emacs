@@ -128,7 +128,8 @@
 
 (global-set-key (kbd "C-z") (lambda (&optional _foo)
 			      (interactive)
-			      nil))
+			      ;; same as C-u
+			      (universal-argument)))
 
 
 (defun scroll-up-one ()
