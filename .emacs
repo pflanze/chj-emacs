@@ -126,6 +126,10 @@
 			      (interactive)
 			      (server-edit)))
 
+(global-set-key (kbd "C-z") (lambda (&optional _foo)
+			      (interactive)
+			      nil))
+
 
 (defun scroll-up-one ()
   (interactive)
