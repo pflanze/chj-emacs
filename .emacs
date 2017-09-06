@@ -505,7 +505,8 @@ it is put to the start of the list."
 ;; <fsbot> A value of `grow-only', the default, means let mini-windows grow only;
 
 ;; X window (frame) title:
-(setq frame-title-format (list user-login-name "@" system-name ": %b"))
+(setq frame-title-format (list user-login-name ": %b"))
+;;  "@" system-name   only uses space, I never use emacs via remote X
 
 ;; emacs25 requires this so as not to duplicate all input lines in
 ;; inferior-scheme mode:
