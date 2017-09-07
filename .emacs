@@ -476,9 +476,9 @@ it is put to the start of the list."
 ;; Then there's also scroll-bar-mode.
 
 
-(global-set-key [(control ?,)] 'advertised-undo)
-(global-set-key [(control ?.)] 'advertised-undo)
-(global-set-key [(control ?-)] 'advertised-undo)
+(global-set-key [(control ?,)] 'undo)
+(global-set-key [(control ?.)] 'undo)
+(global-set-key [(control ?-)] 'undo)
 
 (setq inhibit-splash-screen t)
 
