@@ -303,7 +303,7 @@ it is put to the start of the list."
 (defun cj-type-lambda-form ()
   (interactive)
   (insert "(lambda ())")
-  (backward-char-nomark 2))
+  (left-char 2))
 
 (defun cj-scheme-load-buffer ()
   (interactive)
