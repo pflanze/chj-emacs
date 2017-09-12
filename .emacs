@@ -274,6 +274,26 @@ it is put to the start of the list."
   (add-hook 'scheme-mode-hook (function gambit-mode))
   (setq scheme-program-name "loop -c ~/bin/gam-emacs"))
 
+
+(defun gambit-show-definition (name)
+  "Bring up the definition of the given function or macro. Requires |show-def| from chj-schemelib's cj-env.scm."
+  (interactive (comint-get-source "Show definition of: "
+				  ;; XX bogus, use a different procedure?:
+				  scheme-prev-l/c-dir/file
+                                  scheme-source-modes
+				  nil))
+  (scheme-send-string (concat "(show-def " name "\)\n")))
+
+(defun gambit-show-definition-region (start end)
+  "Send the current region to gambit-show-definition."
+  (interactive "r")
+  (gambit-show-definition (buffer-substring start end)))
+
+(defun gambit-show-definition-last-sexp ()
+  (interactive)
+  (gambit-show-definition-region (save-excursion (backward-sexp) (point)) (point)))
+
+
 ;; for julia
 (when (file-exists-p "~/.emacs.d/julia-mode.el")
   (load-file "~/.emacs.d/julia-mode.el"))
@@ -322,6 +342,7 @@ it is put to the start of the list."
     ([f4] . move-past-close-and-reindent)
     ([f5] . cj-scheme-load-buffer)
     ([f6] . cj-wget-repl)
+    ([f8] . gambit-show-definition-last-sexp)
     ([(control return)] . move-past-close-and-reindent)
     ("ł" . cj-type-lambda-form)
     ("Ł" . cj-type-lambda)))
