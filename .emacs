@@ -279,6 +279,26 @@ it is put to the start of the list."
   (add-hook 'scheme-mode-hook (function gambit-mode))
   (setq scheme-program-name "loop -c ~/bin/gam-emacs"))
 
+
+(defun gambit-show-definition (name)
+  "Bring up the definition of the given function or macro. Requires |show-def| from chj-schemelib's cj-env.scm."
+  (interactive (comint-get-source "Show definition of: "
+				  ;; XX bogus, use a different procedure?:
+				  scheme-prev-l/c-dir/file
+                                  scheme-source-modes
+				  nil))
+  (scheme-send-string (concat "(show-def " name "\)\n")))
+
+(defun gambit-show-definition-region (start end)
+  "Send the current region to gambit-show-definition."
+  (interactive "r")
+  (gambit-show-definition (buffer-substring start end)))
+
+(defun gambit-show-definition-last-sexp ()
+  (interactive)
+  (gambit-show-definition-region (save-excursion (backward-sexp) (point)) (point)))
+
+
 ;; for julia
 (when (file-exists-p "~/.emacs.d/julia-mode.el")
   (load-file "~/.emacs.d/julia-mode.el"))
@@ -308,7 +328,7 @@ it is put to the start of the list."
 (defun cj-type-lambda-form ()
   (interactive)
   (insert "(lambda ())")
-  (backward-char-nomark 2))
+  (left-char 2))
 
 (defun cj-scheme-load-buffer ()
   (interactive)
@@ -327,6 +347,7 @@ it is put to the start of the list."
     ([f4] . move-past-close-and-reindent)
     ([f5] . cj-scheme-load-buffer)
     ([f6] . cj-wget-repl)
+    ([f8] . gambit-show-definition-last-sexp)
     ([(control return)] . move-past-close-and-reindent)
     ("ł" . cj-type-lambda-form)
     ("Ł" . cj-type-lambda)))
@@ -481,9 +502,9 @@ it is put to the start of the list."
 ;; Then there's also scroll-bar-mode.
 
 
-(global-set-key [(control ?,)] 'advertised-undo)
-(global-set-key [(control ?.)] 'advertised-undo)
-(global-set-key [(control ?-)] 'advertised-undo)
+(global-set-key [(control ?,)] 'undo)
+(global-set-key [(control ?.)] 'undo)
+(global-set-key [(control ?-)] 'undo)
 
 (setq inhibit-splash-screen t)
 
@@ -510,7 +531,8 @@ it is put to the start of the list."
 ;; <fsbot> A value of `grow-only', the default, means let mini-windows grow only;
 
 ;; X window (frame) title:
-(setq frame-title-format (list user-login-name "@" system-name ": %b"))
+(setq frame-title-format (list user-login-name ": %b"))
+;;  "@" system-name   only uses space, I never use emacs via remote X
 
 ;; emacs25 requires this so as not to duplicate all input lines in
 ;; inferior-scheme mode:
