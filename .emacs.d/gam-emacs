@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ulimit -S -v 3500000
+
+exec gsc -:tE,dar,t8,f8,-8 "$@"
+
