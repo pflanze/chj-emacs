@@ -2,5 +2,9 @@
 
 ulimit -S -v 3500000
 
-exec gsc -:tE,dar,t8,f8,-8 "$@"
-
+# check flag outside emacs for easier(?) switching:
+if [ -f .gam-gdb ]; then
+    exec _gam-emacs-gdb "$@"
+else
+    exec gsc -:tE,dar,t8,f8,-8 "$@"
+fi
