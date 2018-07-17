@@ -131,7 +131,7 @@
 
 (global-set-key (kbd "M-§") (lambda (&optional _foo)
 			      (interactive)
-			      (server-edit)))
+			      (kill-buffer)))
 
 (global-set-key (kbd "C-z") (lambda (&optional _foo)
 			      (interactive)
