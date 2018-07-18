@@ -47,6 +47,9 @@
 ;;^- pc-se* zeug muss aktiv sein damit forward-sexp-mark vorhanden ist. so komisch.
 
 
+(add-to-list 'load-path "~/.emacs.d/")
+
+
 ;; SLIME48
 (setq user-home (getenv "HOME"))
 (add-to-list 'load-path (concat user-home "/CAMPBELL/SLIME48/slime48"))
@@ -311,11 +314,6 @@ it is put to the start of the list."
   (gambit-show-definition-region (save-excursion (backward-sexp) (point)) (point)))
 
 
-;; for julia
-(when (file-exists-p "~/.emacs.d/julia-mode.el")
-  (load-file "~/.emacs.d/julia-mode.el"))
-
-
 (when (file-exists-p "~/.emacs.d/pretty-lambdada.el")
   (load-file "~/.emacs.d/pretty-lambdada.el")
   (pretty-lambda-for-modes))
@@ -392,6 +390,10 @@ it is put to the start of the list."
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
+
+
+(if (file-exists-p "~/.emacs.d/julia-mode.el")
+    (require 'julia-mode))
 
 
 (add-hook 'scheme-mode-hook
