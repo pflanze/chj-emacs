@@ -538,3 +538,6 @@ it is put to the start of the list."
 ;; inferior-scheme mode:
 (setq comint-process-echoes t)
 
+
+;; Avoid jumping around in run-scheme or run-python windows
+(setq scroll-conservatively 100)
