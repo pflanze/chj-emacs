@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ulimit -S -v 2500000
+ulimit -S -v 6500000
 
 # check flag outside emacs for easier(?) switching:
 if [ -f .gam-gdb ]; then
