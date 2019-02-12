@@ -93,7 +93,7 @@
 	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
 	     auto-mode-alist))
 
-;;(setq-default indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
 
 
 (if (equal (getenv "USER") "chrisclojure")
