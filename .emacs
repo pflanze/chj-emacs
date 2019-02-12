@@ -107,8 +107,10 @@
       
       (load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
       
-      (add-to-list 'load-path "/home/chrisclojure/src/slime")  ; your SLIME directory
-      (setq inferior-lisp-program "lein swank") ; your Lisp system
+      (add-to-list 'load-path "/home/chrisclojure/src/slime")
+					; ^ your SLIME directory
+      (setq inferior-lisp-program "lein swank")
+					; ^ your Lisp system
       (require 'slime)
       (slime-setup)))
 
@@ -191,7 +193,10 @@
 (add-hook 'cperl-mode-hook
 	  (lambda () 
 	    (define-key cperl-mode-map [(return)]
-	      (lambda () (interactive) (cperl-indent-command) (newline-and-indent)))
+	      (lambda ()
+		(interactive)
+		(cperl-indent-command)
+		(newline-and-indent)))
 	    (define-key cperl-mode-map [(shift return)] 'newline)
 	    (imenu-add-menubar-index)))
 
