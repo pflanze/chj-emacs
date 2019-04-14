@@ -426,7 +426,8 @@ it is put to the start of the list."
 
 	    (dolist (p `(([(meta s)] . save-buffer)
 			 ))
-	      (define-key haskell-mode-map (car p) (cdr p)))))
+	      (define-key haskell-mode-map (car p) (cdr p))))
+          :append)
 
 
 
