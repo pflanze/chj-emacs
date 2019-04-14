@@ -419,6 +419,18 @@ it is put to the start of the list."
 			      (paredit-mode +1)
 			      (auto-revert-mode +1)))
 
+
+(add-hook 'haskell-mode-hook
+          (lambda()
+	    (imenu-add-menubar-index)
+
+	    (dolist (p `(([(meta s)] . save-buffer)
+			 ))
+	      (define-key haskell-mode-map (car p) (cdr p)))))
+
+
+
+
 (defun cj-tex-compile-in-cwd ()
   (interactive)
   (save-buffer)
