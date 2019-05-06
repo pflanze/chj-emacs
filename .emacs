@@ -441,7 +441,7 @@ it is put to the start of the list."
 			    (concat "perl -we '$t= "
 				    (number-to-string (car tim))
 				    "* 2**16 + "
-				    (number-to-string (cdr tim))
+				    (number-to-string (cadr tim))
 				    "; system q{date -d @}.$t'")))
 			"-") "}")))
 
