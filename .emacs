@@ -442,7 +442,7 @@ it is put to the start of the list."
 				    (number-to-string (car tim))
 				    "* 2**16 + "
 				    (number-to-string (cadr tim))
-				    "; system q{date -d @}.$t'")))
+				    "; exec \"date\", \"-d\", \"\\@$t\"'")))
 			"-") "}")))
 
 (defun cj-curtim ()
