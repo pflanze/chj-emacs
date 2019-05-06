@@ -429,16 +429,27 @@ it is put to the start of the list."
 
 (setq history-length 200)
 
+(defun cj-chop (str)
+  (substring str 0 (- (length str) 1)))
+
 (defun cj-filetim ()
   (interactive)
   (let ((tim (visited-file-modtime)))
     (insert "{mtime " (if (listp tim)
-			  (current-time-string tim)
+			  (cj-chop
+			   (shell-command-to-string
+			    (concat "perl -we '$t= "
+				    (number-to-string (car tim))
+				    "* 2**16 + "
+				    (number-to-string (cdr tim))
+				    "; system q{date -d @}.$t'")))
 			"-") "}")))
 
 (defun cj-curtim ()
   (interactive)
-  (insert "{" (current-time-string) "}"))
+  (insert "{"
+	  (cj-chop (shell-command-to-string "date"))
+	  "}"))
 
 (defun cj-tim (u)
   (interactive "P");; "p" does not work actually!
