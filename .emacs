@@ -578,3 +578,10 @@ it is put to the start of the list."
       (setq haskell-mode-stylish-haskell-path "brittany")
       (define-key haskell-mode-map "\C-c\C-f" #'haskell-mode-stylish-buffer))))
 
+
+
+;; (add-to-list 'load-path "~/.emacs.d/f.el/")
+;; (add-to-list 'load-path "~/.emacs.d/s.el/")
+(add-to-list 'load-path "~/.emacs.d/elm-mode/")
+;; use version a01626ce462fffc11af1f7e64f6d520e363157f9
+(require 'elm-mode)
