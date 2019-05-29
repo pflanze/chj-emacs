@@ -543,6 +543,7 @@ it is put to the start of the list."
 (global-set-key [(control ?,)] 'undo)
 (global-set-key [(control ?.)] 'undo)
 (global-set-key [(control ?-)] 'undo)
+(global-set-key [(meta ?-)] 'dabbrev-expand)
 
 (setq inhibit-splash-screen t)
 
