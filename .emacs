@@ -598,17 +598,22 @@ it is put to the start of the list."
 ;; According to https://www.lambdacat.com/post-modern-emacs-setup-for-elm/ :
 
 (require 'flycheck)
+
+(add-to-list 'load-path "~/.emacs.d/flycheck-elm/")
+(require 'flycheck-elm)
+(require 'company)
+
 (with-eval-after-load 'flycheck
 		      '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
 ;; if Flycheck loads but elm is not a valid syntax checker
 ;; That means that flycheck-elm-setup is not getting triggered.
 ;; This worked for me:
-;; (add-hook 'flycheck-mode-hook 'flycheck-elm-setup)
+(add-hook 'flycheck-mode-hook 'flycheck-elm-setup)
 
 ;; flycheck may not load at all
 ;; For some reason the hook to elm-mode is not actually triggering. To
 ;; force it to load for every buffer add this to .emacs:
-;; (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Autocompletion:
 
