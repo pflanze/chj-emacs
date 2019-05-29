@@ -47,7 +47,7 @@
 ;;^- pc-se* zeug muss aktiv sein damit forward-sexp-mark vorhanden ist. so komisch.
 
 
-(add-to-list 'load-path "~/.emacs.d/")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 
 ;; SLIME48
@@ -286,8 +286,8 @@ it is put to the start of the list."
 
 
 ; for Gambit-C
-(when (file-exists-p "~/.emacs.d/gambit.el")
-  (load-file "~/.emacs.d/gambit.el")
+(when (file-exists-p "~/.emacs.d/lisp/gambit.el")
+  (load-file "~/.emacs.d/lisp/gambit.el")
   (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
   (autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
   (add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
@@ -314,8 +314,8 @@ it is put to the start of the list."
   (gambit-show-definition-region (save-excursion (backward-sexp) (point)) (point)))
 
 
-(when (file-exists-p "~/.emacs.d/pretty-lambdada.el")
-  (load-file "~/.emacs.d/pretty-lambdada.el")
+(when (file-exists-p "~/.emacs.d/lisp/pretty-lambdada.el")
+  (load-file "~/.emacs.d/lisp/pretty-lambdada.el")
   (pretty-lambda-for-modes))
 
 
@@ -385,14 +385,14 @@ it is put to the start of the list."
 
 
 ;;;   (add-to-list 'load-path "/path/to/elisp")
-(if (file-exists-p "~/.emacs.d/paredit.el")
-    (load-file "~/.emacs.d/paredit.el"))
+(if (file-exists-p "~/.emacs.d/lisp/paredit.el")
+    (load-file "~/.emacs.d/lisp/paredit.el"))
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
 
 
-(if (file-exists-p "~/.emacs.d/julia-mode.el")
+(if (file-exists-p "~/.emacs.d/lisp/julia-mode.el")
     (require 'julia-mode))
 
 
