@@ -562,7 +562,7 @@ it is put to the start of the list."
 
 
 
-;; Haskell
+;; === Haskell ============================================
 
 ;; apt-get install dash-el
 ;; apt-get install elpa-flycheck
@@ -587,7 +587,41 @@ it is put to the start of the list."
 
 
 
+;; === Elm ============================================
+
 ;; (add-to-list 'load-path "~/.emacs.d/f-el/")
 ;; (add-to-list 'load-path "~/.emacs.d/s-el/")
 (add-to-list 'load-path "~/.emacs.d/elm-mode/")
 (require 'elm-mode)
+
+
+;; According to https://www.lambdacat.com/post-modern-emacs-setup-for-elm/ :
+
+(require 'flycheck)
+(with-eval-after-load 'flycheck
+		      '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
+;; if Flycheck loads but elm is not a valid syntax checker
+;; That means that flycheck-elm-setup is not getting triggered.
+;; This worked for me:
+;; (add-hook 'flycheck-mode-hook 'flycheck-elm-setup)
+
+;; flycheck may not load at all
+;; For some reason the hook to elm-mode is not actually triggering. To
+;; force it to load for every buffer add this to .emacs:
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
+
+;; Autocompletion:
+
+(with-eval-after-load 'company
+		      (add-to-list 'company-backends 'company-elm))
+(add-hook 'elm-mode-hook
+	  #'elm-oracle-setup-completion)
+
+;; Watch out if you use company-mode for more than one language,
+;; you'll likely need to hook it to the mode, instead of just adding
+;; it to the backends list:
+
+(add-hook 'elm-mode-hook
+	  (lambda ()
+	    (setq company-backends '(company-elm))))
+

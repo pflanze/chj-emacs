@@ -46,11 +46,22 @@ all: /usr/share/emacs24/site-lisp/haskell-mode /usr/share/emacs/site-lisp/elpa-s
 
 
 
-elm: .emacs.d/elm-mode/elm-mode.el .emacs.d/flycheck-elm/flycheck-elm.el
+elm: .emacs.d/elm-mode/elm-mode.el .emacs.d/flycheck-elm/flycheck-elm.el /usr/local/bin/elm-oracle
 
 .emacs.d/elm-mode/elm-mode.el:
 	sbin/git-clone-commit https://github.com/jcollard/elm-mode elm-mode a01626ce462fffc11af1f7e64f6d520e363157f9
 
 .emacs.d/flycheck-elm/flycheck-elm.el:
 	sbin/git-clone-commit https://github.com/bsermons/flycheck-elm flycheck-elm debd0af563cb6c2944367a691c7fa3021d9378c1
+
+
+#Secure way?:
+# .emacs.d/elm-oracle/....el:
+# 	sbin/git-clone-commit https://github.com/ElmCast/elm-oracle elm-oracle
+# 	etc...
+
+#But no have time, so follow https://www.lambdacat.com/post-modern-emacs-setup-for-elm/ :
+# XXX security
+/usr/local/bin/elm-oracle:
+	npm install -g elm-oracle
 
