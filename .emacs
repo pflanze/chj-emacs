@@ -588,13 +588,15 @@ it is put to the start of the list."
 ;; apt-get install libtinfo-dev
 ;; apt-get install elpa-company
 
-(add-to-list 'load-path "~/.emacs.d/intero/elisp/")
+(if (file-exists-p "~/.emacs.d/intero/elisp/")
+    (add-to-list 'load-path "~/.emacs.d/intero/elisp/"))
 (require 'haskell-mode-autoloads)
 ;;(add-to-list 'Info-default-directory-list "~/.emacs.d/haskell-mode/")
 
 ;; (add-to-list 'load-path "~/.emacs.d/dash-el/")
 ;; (add-to-list 'load-path "~/.emacs.d/flycheck/")
-(require 'intero)
+(if (file-exists-p "~/.emacs.d/intero/elisp/")
+    (require 'intero))
 (add-hook 'haskell-mode-hook 'intero-mode)
 
 (eval-after-load 'haskell-mode
