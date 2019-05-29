@@ -574,7 +574,7 @@ it is put to the start of the list."
 (require 'haskell-mode-autoloads)
 ;;(add-to-list 'Info-default-directory-list "~/.emacs.d/haskell-mode/")
 
-;; (add-to-list 'load-path "~/.emacs.d/dash.el/")
+;; (add-to-list 'load-path "~/.emacs.d/dash-el/")
 ;; (add-to-list 'load-path "~/.emacs.d/flycheck/")
 (require 'intero)
 (add-hook 'haskell-mode-hook 'intero-mode)
@@ -587,8 +587,7 @@ it is put to the start of the list."
 
 
 
-;; (add-to-list 'load-path "~/.emacs.d/f.el/")
-;; (add-to-list 'load-path "~/.emacs.d/s.el/")
+;; (add-to-list 'load-path "~/.emacs.d/f-el/")
+;; (add-to-list 'load-path "~/.emacs.d/s-el/")
 (add-to-list 'load-path "~/.emacs.d/elm-mode/")
-;; use version a01626ce462fffc11af1f7e64f6d520e363157f9
 (require 'elm-mode)

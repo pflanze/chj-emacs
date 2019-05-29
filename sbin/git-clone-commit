@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=
+
+url="$1"
+dir="$2"
+commitid="$3"
+
+set -x
+
+cd .emacs.d/
+git clone "$url" "$dir"
+cd "$dir"
+git checkout -b git_clone_commit "$commitid"
