@@ -637,8 +637,9 @@ it is put to the start of the list."
   "Company--symbol completions"
   t)
 
-(with-eval-after-load 'flycheck
-		      '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
+(if (functionp #'with-eval-after-load)
+    (with-eval-after-load 'flycheck
+			  '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup)))
 ;; if Flycheck loads but elm is not a valid syntax checker
 ;; That means that flycheck-elm-setup is not getting triggered.
 ;; This worked for me:
@@ -651,8 +652,9 @@ it is put to the start of the list."
 
 ;; Autocompletion:
 
-(with-eval-after-load 'company
-		      (add-to-list 'company-backends 'company-elm))
+(if (functionp #'with-eval-after-load)
+    (with-eval-after-load 'company
+			  (add-to-list 'company-backends 'company-elm)))
 (add-hook 'elm-mode-hook
 	  #'elm-oracle-setup-completion)
 
