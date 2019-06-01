@@ -648,7 +648,7 @@ it is put to the start of the list."
 ;; flycheck may not load at all
 ;; For some reason the hook to elm-mode is not actually triggering. To
 ;; force it to load for every buffer add this to .emacs:
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;;XXX find alternative (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; Autocompletion:
 
