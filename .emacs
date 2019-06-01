@@ -594,8 +594,10 @@ it is put to the start of the list."
 
 (if (file-exists-p "~/.emacs.d/intero/elisp/")
     (add-to-list 'load-path "~/.emacs.d/intero/elisp/"))
-(require 'haskell-mode-autoloads)
 ;;(add-to-list 'Info-default-directory-list "~/.emacs.d/haskell-mode/")
+(autoload 'haskell-mode "haskell"
+  "Haskell editing etc."
+  t)
 
 ;; (add-to-list 'load-path "~/.emacs.d/dash-el/")
 ;; (add-to-list 'load-path "~/.emacs.d/flycheck/")
@@ -616,16 +618,24 @@ it is put to the start of the list."
 ;; (add-to-list 'load-path "~/.emacs.d/f-el/")
 ;; (add-to-list 'load-path "~/.emacs.d/s-el/")
 (add-to-list 'load-path "~/.emacs.d/elm-mode/")
-(require 'elm-mode)
+(autoload 'elm-mode "elm"
+  "Elm"
+  t)
 
 
 ;; According to https://www.lambdacat.com/post-modern-emacs-setup-for-elm/ :
 
-(require 'flycheck)
+(autoload 'flycheck "flycheck"
+  "Flycheck"
+  t)
 
 (add-to-list 'load-path "~/.emacs.d/flycheck-elm/")
-(require 'flycheck-elm)
-(require 'company)
+(autoload 'flycheck-elm "flycheck-elm"
+  "Flycheck for Elm"
+  t)
+(autoload 'company "company"
+  "Company--symbol completions"
+  t)
 
 (with-eval-after-load 'flycheck
 		      '(add-hook 'flycheck-mode-hook #'flycheck-elm-setup))
