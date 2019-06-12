@@ -612,6 +612,13 @@ it is put to the start of the list."
       (define-key haskell-mode-map "\C-c\C-f" #'haskell-mode-stylish-buffer))))
 
 
+;; stack install shower, add .local/bin to PATH; run M-x shower with
+;; an active region.
+(defun shower ()
+  (interactive)
+  (shell-command-on-region (mark) (point) "shower" t t))
+
+
 
 ;; === Elm ============================================
 
