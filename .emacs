@@ -94,7 +94,7 @@
 
 (setq auto-mode-alist
       (list* '("\\.md$" . markdown-mode)
-	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
+	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\|clj\\)$" . scheme-mode)
 	     auto-mode-alist))
 
 (setq-default indent-tabs-mode nil)
