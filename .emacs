@@ -100,7 +100,7 @@
 (setq-default indent-tabs-mode nil)
 
 
-(if (equal (getenv "USER") "chrisclojure")
+'(if (equal (getenv "USER") "chrisclojure")
     (progn
       (load "/home/chrisclojure/.emacs.d/package.el")
       (add-to-list 'package-archives
