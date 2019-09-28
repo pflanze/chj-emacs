@@ -50,6 +50,13 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(when (file-exists-p "~/.opam/system/share/emacs/site-lisp/")
+   (add-to-list 'load-path "~/.opam/system/share/emacs/site-lisp/"))
+
+(autoload 'utop "utop"
+  "utop: a universal toplevel (i.e., REPL) for OCaml"
+  t)
+
 
 ;; SLIME48
 (setq user-home (getenv "HOME"))
