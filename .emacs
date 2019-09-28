@@ -53,9 +53,10 @@
 (when (file-exists-p "~/.opam/system/share/emacs/site-lisp/")
    (add-to-list 'load-path "~/.opam/system/share/emacs/site-lisp/"))
 
-(autoload 'utop "utop"
-  "utop: a universal toplevel (i.e., REPL) for OCaml"
-  t)
+(autoload 'utop "utop" "toplevel for OCaml" t)
+(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+(setq utop-command "opam config exec -- utop -emacs")
+(add-hook 'tuareg-mode-hook 'utop-minor-mode)
 
 
 ;; SLIME48
