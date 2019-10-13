@@ -100,8 +100,18 @@
 (require 'cl) ;; for |case| and |list*|
 
 
+(define-derived-mode tmdmarkdown-mode markdown-mode "Markdown-reading"
+  "Markdown for Text reading"
+  (setq buffer-face-mode-face
+	'(:family "Bitstream Charter Regular"
+		  :height 160
+		  :width semi-condensed))
+  (buffer-face-mode))
+
+
 (setq auto-mode-alist
       (list* '("\\.md$" . markdown-mode)
+             '("\\.tmd$" . tmdmarkdown-mode)
 	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\|clj\\)$" . scheme-mode)
 	     auto-mode-alist))
 
