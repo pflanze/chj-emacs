@@ -1,39 +1,32 @@
-all: /usr/share/emacs24/site-lisp/haskell-mode /usr/share/emacs/site-lisp/elpa-src/company-0.8.12 .emacs.d/dash-el .emacs.d/flycheck .emacs.d/f-el .emacs.d/s-el .emacs.d/intero elm
+all: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .emacs.d/f-el .emacs.d/s-el .emacs.d/intero elm
 
-/usr/share/emacs24/site-lisp/haskell-mode:
-	apt-get install -y haskell-mode
-
+# remember, can't use dirs as make targets!
+.emacs.d/haskell-mode: .emacs.d/haskell-mode/haskell.el
+.emacs.d/haskell-mode/haskell.el:
+	sbin/apt-install-and-symlink-dir haskell-mode haskell.el .emacs.d/haskell-mode
 
 # XX ` elpa-epl ` is also installed but what for?
 
 # not sure what this is for
-/usr/share/emacs/site-lisp/elpa-src/company-0.8.12:
-	apt-get install -y elpa-company
+.emacs.d/company: .emacs.d/company/company.el
+.emacs.d/company/company.el:
+	sbin/apt-install-and-symlink-dir elpa-company company.el .emacs.d/company
 
+.emacs.d/dash-el: .emacs.d/dash-el/dash.el
+.emacs.d/dash-el/dash.el:
+	sbin/apt-install-and-symlink-dir dash-el dash.el .emacs.d/dash-el
 
-.emacs.d/dash-el:
-	apt-get install -y dash-el
-	bash -c 'set -euo pipefail; l=`dpkg -L elpa-dash | egrep '\''/dash\.el$$'\''`; ln -s "$$l" .emacs.d/dash-el'
+.emacs.d/flycheck: .emacs.d/flycheck/flycheck.el
+.emacs.d/flycheck/flycheck.el:
+	sbin/apt-install-and-symlink-dir elpa-flycheck flycheck.el .emacs.d/flycheck 
 
-/usr/share/emacs25/site-lisp/elpa/flycheck-30:
-	apt-get install -y elpa-flycheck
+.emacs.d/f-el: .emacs.d/f-el/f.el
+.emacs.d/f-el/f.el:
+	sbin/apt-install-and-symlink-dir elpa-f f.el .emacs.d/f-el
 
-.emacs.d/flycheck: /usr/share/emacs25/site-lisp/elpa/flycheck-30
-	ln -s /usr/share/emacs25/site-lisp/elpa/flycheck-30 .emacs.d/flycheck
-
-
-/usr/share/emacs25/site-lisp/elpa/f-0.19.0:
-	apt-get install -y elpa-f
-
-.emacs.d/f-el: /usr/share/emacs25/site-lisp/elpa/f-0.19.0
-	ln -s /usr/share/emacs25/site-lisp/elpa/f-0.19.0 .emacs.d/f-el
-
-
-/usr/share/emacs25/site-lisp/s-el:
-	apt-get install -y s-el
-
-.emacs.d/s-el: /usr/share/emacs25/site-lisp/s-el
-	ln -s /usr/share/emacs25/site-lisp/s-el .emacs.d/s-el
+.emacs.d/s-el: .emacs.d/s-el/s.el
+.emacs.d/s-el/s.el:
+	sbin/apt-install-and-symlink-dir s-el s.el .emacs.d/s-el
 
 
 # XXX  also building needs ` libtinfo-dev ` ?
