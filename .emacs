@@ -411,8 +411,9 @@ it is put to the start of the list."
   t)
 
 
-(if (file-exists-p "~/.emacs.d/lisp/julia-mode.el")
-    (require 'julia-mode))
+(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
+  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
+  (require 'julia-mode))
 
 
 (add-hook 'scheme-mode-hook
