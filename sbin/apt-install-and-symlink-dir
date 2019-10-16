@@ -4,20 +4,23 @@ set -euo pipefail
 IFS=
 
 usage () {
-    echo "usage: $0 packagename testedfilename targetdir"
+    echo "usage: $0 packagename testedfilename targetdir [alternatepackagename]"
     echo "  Installs \$packagename via apt,"
     echo "  finds \$testedfilename in \$packagename,"
-    echo "  then symlinks the found's file's parent directory to \$targetdir"
+    echo "  then symlinks the found's file's parent directory to \$targetdir."
+    echo "  If it finds no match in \$packagename, and alternatepackagename "
+    echo "  was given, tries again with \$alternatepackagename."
     exit 1
 }
 
-if [ $# -ne 3 ]; then
+if [ $# -ne 3 -a $# -ne 4 ]; then
     usage
 fi
 
 packagename=$1
 testedfilename=$2
 targetdir=$3
+alternatepackagename=${4-}
 
 apt-get install -y "$packagename"
 
@@ -30,8 +33,12 @@ pattern="/$(perl -we 'print quotemeta($ARGV[0])' "$testedfilename")$"
 mapfile -t items < <(dpkg -L "$packagename" | egrep -- "$pattern")
 
 if ((${#items[@]} != 1)); then
-    echo "$0 $packagename $testedfilename $targetdir: need exactly 1 match for pattern '$pattern', got ${#items[@]}" >&2
-    exit 1
+    if [ -n "$alternatepackagename" -a ${#items[@]} -eq 0 ]; then
+        exec "$0" "$alternatepackagename" "$testedfilename" "$targetdir"
+    else
+        echo "$0 $packagename $testedfilename $targetdir: need exactly 1 match for pattern '$pattern', got ${#items[@]}" >&2
+        exit 1
+    fi
 fi
 
 set -x

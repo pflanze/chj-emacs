@@ -3,7 +3,7 @@ all: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .
 # remember, can't use dirs as make targets!
 .emacs.d/haskell-mode: .emacs.d/haskell-mode/haskell.el
 .emacs.d/haskell-mode/haskell.el:
-	sbin/apt-install-and-symlink-dir haskell-mode haskell.el .emacs.d/haskell-mode
+	sbin/apt-install-and-symlink-dir haskell-mode haskell.el .emacs.d/haskell-mode elpa-haskell-mode
 
 # XX ` elpa-epl ` is also installed but what for?
 
@@ -14,7 +14,7 @@ all: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .
 
 .emacs.d/dash-el: .emacs.d/dash-el/dash.el
 .emacs.d/dash-el/dash.el:
-	sbin/apt-install-and-symlink-dir dash-el dash.el .emacs.d/dash-el
+	sbin/apt-install-and-symlink-dir dash-el dash.el .emacs.d/dash-el elpa-dash
 
 .emacs.d/flycheck: .emacs.d/flycheck/flycheck.el
 .emacs.d/flycheck/flycheck.el:
@@ -26,7 +26,7 @@ all: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .
 
 .emacs.d/s-el: .emacs.d/s-el/s.el
 .emacs.d/s-el/s.el:
-	sbin/apt-install-and-symlink-dir s-el s.el .emacs.d/s-el
+	sbin/apt-install-and-symlink-dir s-el s.el .emacs.d/s-el elpa-s
 
 
 # XXX  also building needs ` libtinfo-dev ` ?
