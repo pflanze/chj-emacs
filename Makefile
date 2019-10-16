@@ -11,12 +11,9 @@ all: /usr/share/emacs24/site-lisp/haskell-mode /usr/share/emacs/site-lisp/elpa-s
 	apt-get install -y elpa-company
 
 
-/usr/share/emacs25/site-lisp/dash-el:
+.emacs.d/dash-el:
 	apt-get install -y dash-el
-
-.emacs.d/dash-el: /usr/share/emacs25/site-lisp/dash-el
-	ln -s /usr/share/emacs25/site-lisp/dash-el .emacs.d/dash-el
-
+	bash -c 'set -euo pipefail; l=`dpkg -L elpa-dash | egrep '\''/dash\.el$$'\''`; ln -s "$$l" .emacs.d/dash-el'
 
 /usr/share/emacs25/site-lisp/elpa/flycheck-30:
 	apt-get install -y elpa-flycheck
