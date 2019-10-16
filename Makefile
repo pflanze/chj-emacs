@@ -8,7 +8,7 @@ julia: .emacs.d/julia-emacs
 	sbin/git-clone-commit https://github.com/JuliaEditorSupport/julia-emacs julia-emacs 0f064b756a342354cefea8b6bb25c17b182aef68
 
 
-haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .emacs.d/f-el .emacs.d/s-el
+haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/f-el .emacs.d/s-el
 
 # remember, can't use dirs as make targets!
 .emacs.d/haskell-mode: .emacs.d/haskell-mode/haskell.el
