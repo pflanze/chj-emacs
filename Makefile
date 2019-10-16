@@ -40,7 +40,7 @@ all: /usr/share/emacs24/site-lisp/haskell-mode /usr/share/emacs/site-lisp/elpa-s
 
 
 # XXX  also building needs ` libtinfo-dev ` ?
-.emacs.d/intero: /home/cjaeger/src/intero
+.emacs.d/intero: #  /home/cjaeger/src/intero
 	ln -s /home/cjaeger/src/intero .emacs.d
 
 
