@@ -1,4 +1,12 @@
-default: haskell
+default: julia haskell
+
+
+julia: .emacs.d/julia-emacs
+
+.emacs.d/julia-emacs: .emacs.d/julia-emacs/julia-mode.el
+.emacs.d/julia-emacs/julia-mode.el:
+	sbin/git-clone-commit https://github.com/JuliaEditorSupport/julia-emacs julia-emacs 2ef6992125a85674532a1e37dacd5c60bee4feeb
+
 
 haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .emacs.d/f-el .emacs.d/s-el
 
