@@ -1,4 +1,6 @@
-default: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .emacs.d/f-el .emacs.d/s-el
+default: haskell
+
+haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/flycheck .emacs.d/f-el .emacs.d/s-el
 
 # remember, can't use dirs as make targets!
 .emacs.d/haskell-mode: .emacs.d/haskell-mode/haskell.el
