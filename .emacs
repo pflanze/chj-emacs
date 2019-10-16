@@ -50,6 +50,14 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(when (file-exists-p "~/.opam/system/share/emacs/site-lisp/")
+   (add-to-list 'load-path "~/.opam/system/share/emacs/site-lisp/"))
+
+(autoload 'utop "utop" "toplevel for OCaml" t)
+(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+(setq utop-command "opam config exec -- utop -emacs")
+(add-hook 'tuareg-mode-hook 'utop-minor-mode)
+
 
 ;; SLIME48
 (setq user-home (getenv "HOME"))
@@ -92,15 +100,25 @@
 (require 'cl) ;; for |case| and |list*|
 
 
+(define-derived-mode tmdmarkdown-mode markdown-mode "Markdown-reading"
+  "Markdown for Text reading"
+  (setq buffer-face-mode-face
+	'(:family "Bitstream Charter Regular"
+		  :height 160
+		  :width semi-condensed))
+  (buffer-face-mode))
+
+
 (setq auto-mode-alist
       (list* '("\\.md$" . markdown-mode)
-	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\)$" . scheme-mode)
+             '("\\.tmd$" . tmdmarkdown-mode)
+	     '("\\.\\(?:scm\\|sch\\|scme\\|bee\\|ast\\|clj\\)$" . scheme-mode)
 	     auto-mode-alist))
 
 (setq-default indent-tabs-mode nil)
 
 
-(if (equal (getenv "USER") "chrisclojure")
+'(if (equal (getenv "USER") "chrisclojure")
     (progn
       (load "/home/chrisclojure/.emacs.d/package.el")
       (add-to-list 'package-archives
@@ -393,8 +411,9 @@ it is put to the start of the list."
   t)
 
 
-(if (file-exists-p "~/.emacs.d/lisp/julia-mode.el")
-    (require 'julia-mode))
+(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
+  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
+  (require 'julia-mode))
 
 
 (add-hook 'scheme-mode-hook
