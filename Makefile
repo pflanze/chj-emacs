@@ -1,6 +1,13 @@
 default: julia haskell
 
 
+scheme: geiser
+
+geiser: .emacs.d/geiser/elisp/geiser.el
+.emacs.d/geiser/elisp/geiser.el:
+	sbin/git-clone-commit https://gitlab.com/jaor/geiser.git geiser 846b23d70c47b2d7b48000f2f2455ffd48405c33
+
+
 julia: .emacs.d/julia-emacs
 
 .emacs.d/julia-emacs: .emacs.d/julia-emacs/julia-mode.el
