@@ -416,6 +416,14 @@ it is put to the start of the list."
   t)
 
 
+
+;; Geiser
+
+(when (add-to-load-path-if-exists "~/.emacs.d/geiser/elisp")
+  (require 'geiser))
+
+
+
 (when (add-to-load-path-if-exists "~/.emacs.d/julia-emacs")
   (require 'julia-mode))
 
