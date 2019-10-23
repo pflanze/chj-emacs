@@ -48,10 +48,17 @@
 ;;^- pc-se* zeug muss aktiv sein damit forward-sexp-mark vorhanden ist. so komisch.
 
 
-(add-to-list 'load-path "~/.emacs.d/lisp")
+(defun add-to-load-path-if-exists (path)
+  "Adds path to 'load-path and returns t if path exists, does
+nothing and returns nil otherwise."
+  (when (file-exists-p path)
+    (add-to-list 'load-path path)
+    t))
 
-(when (file-exists-p "~/.opam/system/share/emacs/site-lisp/")
-   (add-to-list 'load-path "~/.opam/system/share/emacs/site-lisp/"))
+(add-to-load-path-if-exists "~/.emacs.d/lisp")
+
+(add-to-load-path-if-exists "~/.opam/system/share/emacs/site-lisp/")
+
 
 (autoload 'utop "utop" "toplevel for OCaml" t)
 (autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
@@ -61,7 +68,7 @@
 
 ;; SLIME48
 (setq user-home (getenv "HOME"))
-(add-to-list 'load-path (concat user-home "/CAMPBELL/SLIME48/slime48"))
+(add-to-load-path-if-exists (concat user-home "/CAMPBELL/SLIME48/slime48"))
 
 (autoload 'slime "slime"
   "Start an inferior^_superior Lisp and connect to its Swank server."
@@ -129,7 +136,7 @@
       
       (load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
       
-      (add-to-list 'load-path "/home/chrisclojure/src/slime")
+      (add-to-load-path-if-exists "/home/chrisclojure/src/slime")
 					; ^ your SLIME directory
       (setq inferior-lisp-program "lein swank")
 					; ^ your Lisp system
@@ -403,16 +410,13 @@ it is put to the start of the list."
 	    "yes, append it"))
 
 
-;;;   (add-to-list 'load-path "/path/to/elisp")
-(if (file-exists-p "~/.emacs.d/lisp/paredit.el")
-    (load-file "~/.emacs.d/lisp/paredit.el"))
+(add-to-load-path-if-exists "~/.emacs.d/lisp/paredit.el")
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
 
 
-(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
-  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
+(when (add-to-load-path-if-exists "~/.emacs.d/julia-emacs")
   (require 'julia-mode))
 
 
@@ -611,15 +615,14 @@ it is put to the start of the list."
 ;; apt-get install libtinfo-dev
 ;; apt-get install elpa-company
 
-(if (file-exists-p "~/.emacs.d/intero/elisp/")
-    (add-to-list 'load-path "~/.emacs.d/intero/elisp/"))
+(add-to-load-path-if-exists "~/.emacs.d/intero/elisp/")
 ;;(add-to-list 'Info-default-directory-list "~/.emacs.d/haskell-mode/")
 (autoload 'haskell-mode "haskell"
   "Haskell editing etc."
   t)
 
-;; (add-to-list 'load-path "~/.emacs.d/dash-el/")
-;; (add-to-list 'load-path "~/.emacs.d/flycheck/")
+;; (add-to-load-path-if-exists "~/.emacs.d/dash-el/")
+;; (add-to-load-path-if-exists "~/.emacs.d/flycheck/")
 (if (file-exists-p "~/.emacs.d/intero/elisp/")
     (require 'intero))
 (add-hook 'haskell-mode-hook 'intero-mode)
@@ -641,9 +644,9 @@ it is put to the start of the list."
 
 ;; === Elm ============================================
 
-;; (add-to-list 'load-path "~/.emacs.d/f-el/")
-;; (add-to-list 'load-path "~/.emacs.d/s-el/")
-(add-to-list 'load-path "~/.emacs.d/elm-mode/")
+;; (add-to-load-path-if-exists "~/.emacs.d/f-el/")
+;; (add-to-load-path-if-exists "~/.emacs.d/s-el/")
+(add-to-load-path-if-exists "~/.emacs.d/elm-mode/")
 (autoload 'elm-mode "elm"
   "Elm"
   t)
@@ -655,7 +658,7 @@ it is put to the start of the list."
   "Flycheck"
   t)
 
-(add-to-list 'load-path "~/.emacs.d/flycheck-elm/")
+(add-to-load-path-if-exists "~/.emacs.d/flycheck-elm/")
 (autoload 'flycheck-elm "flycheck-elm"
   "Flycheck for Elm"
   t)
