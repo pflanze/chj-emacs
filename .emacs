@@ -366,10 +366,17 @@ it is put to the start of the list."
   (insert "(lambda ())")
   (left-char 2))
 
+
+;; dummy, overwritten when loading geiser
+(defun geiser-repl--active-impls ()
+  nil)
+
 (defun cj-scheme-load-buffer ()
   (interactive)
   (save-buffer)
-  (scheme-load-file (buffer-file-name)))
+  (if (geiser-repl--active-impls)
+      (geiser-eval-buffer)
+    (scheme-load-file (buffer-file-name))))
 
 (defun cj-wget-repl ()
   (interactive)
