@@ -423,42 +423,56 @@ it is put to the start of the list."
   t)
 
 
+(defun add-scheme-bindings-to-keymap (keymap for-repl?)
+  (dolist (p `((t [(meta q)] . reindent-lisp)
+               (nil [(return)] . newline-and-indent)
+               (t [(meta left)] . backward-sexp)
+               (t [(meta right)] . forward-sexp)
+               (t [(meta shift left)] . backward-sexp-mark)
+               (t [(meta shift right)] . forward-sexp-mark)
+               (t [(control meta x)] . scheme-send-definition)
+               (t [(meta ret)] . scheme-send-definition)
+               (t [(shift return)] . newline)
+               ,@(mapcar (lambda (p) (cons t p)) cj-first-fn-block)
+               (t [(control meta p)] . backward-down-list)
+               (t [(control meta n)] . up-list)))
+    (if (or (not for-repl?)
+            (car p))
+        (define-key keymap (cadr p) (cddr p)))))
+
+(add-hook 'scheme-mode-hook
+	  (lambda()
+	    (imenu-add-menubar-index)
+            (add-scheme-bindings-to-keymap scheme-mode-map nil))
+	  "yes, append it")
+
+(add-hook 'scheme-mode-hook (lambda ()
+			      (paredit-mode +1)
+			      (auto-revert-mode +1)))
+
+
 
 ;; Geiser
 
+(defun cj-geiser-repl-enable ()
+  (paredit-mode +1)
+  (add-scheme-bindings-to-keymap geiser-repl-mode-map t))
+
 (when (add-to-load-path-if-exists "~/.emacs.d/geiser/elisp")
-  (require 'geiser))
+  (require 'geiser)
+  ;; There's apparently no geiser-hook or geiser-repl-hook, thus have
+  ;; to just load it, sigh, so that I can override with my settings
+  ;; afterwards?
+  (require 'geiser-repl)
+  (cj-geiser-repl-enable))
+
+
 
 
 
 (when (add-to-load-path-if-exists "~/.emacs.d/julia-emacs")
   (require 'julia-mode))
 
-
-(add-hook 'scheme-mode-hook
-	  (lambda()
-	    (imenu-add-menubar-index)
-
-	    (dolist (p `(([(meta q)] . reindent-lisp)
-			 ([(return)] . newline-and-indent)
-			 ([(meta left)] . backward-sexp)
-			 ([(meta right)] . forward-sexp)
-			 ([(meta shift left)] . backward-sexp-mark)
-			 ([(meta shift right)] . forward-sexp-mark)
-			 ([(control meta x)] . scheme-send-definition)
-			 ([(meta ret)] . scheme-send-definition)
-			 ([(shift return)] . newline)
-			 ,@cj-first-fn-block
-			 ([(control meta p)] . backward-down-list)
-			 ([(control meta n)] . up-list)
-			 ))
-	      (define-key scheme-mode-map (car p) (cdr p))))
-	  "yes, append it")
-
-
-(add-hook 'scheme-mode-hook (lambda ()
-			      (paredit-mode +1)
-			      (auto-revert-mode +1)))
 
 
 (add-hook 'haskell-mode-hook
