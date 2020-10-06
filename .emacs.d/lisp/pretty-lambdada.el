@@ -170,7 +170,7 @@ With ARG, turn mode on if ARG is positive, off otherwise.")
 Non-nil optional arg means use pretty-lambda display in that MODE.
 nil means use pretty-lambda display for the current mode."
   (font-lock-add-keywords
-   mode `(("\\<lambda\\>"
+   mode `(("lambda"
    (0 (progn (compose-region (match-beginning 0) (match-end 0)
         ,(make-char 'greek-iso8859-7 107))
       nil))))))
