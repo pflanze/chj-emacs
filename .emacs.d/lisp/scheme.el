@@ -269,7 +269,7 @@ See `run-hooks'."
      ;;
      ;; Declarations.  Hannes Haug <hannes.haug@student.uni-tuebingen.de> says
      ;; this works for SOS, STklos, SCOOPS, Meroon and Tiny CLOS.
-     (list (concat "(\\(define\\*?\\("
+     (list (concat "(\\(def\\*?\\("
 		   ;; Function names.
 		   "\\(\\|-public\\|-method\\|-generic\\(-procedure\\)?\\)\\|"
 		   ;; Macro names, as variable names.  A bit dubious, this.
