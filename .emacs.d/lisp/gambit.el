@@ -135,6 +135,7 @@
   '(
     ("^declare$"               . defun)
     ("^##declare$"             . defun)
+    ("^def$"             . defun)
     ("^##define"               . defun)
     ("^macro-check"            . defun)
     ("^macro-force-vars$"      . defun)
