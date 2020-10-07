@@ -356,7 +356,9 @@ it is put to the start of the list."
 
 (defun cj-type-lambda-form ()
   (interactive)
-  (insert "(lambda ())")
+  (if (file-exists-p ".use-lambda-square")
+      (insert "(lambda [])")
+    (insert "(lambda ())"))
   (left-char 2))
 
 (defun cj-scheme-load-buffer ()
