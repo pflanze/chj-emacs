@@ -303,7 +303,10 @@ See `run-hooks'."
 	"(" (regexp-opt
 	     '("begin" "call-with-current-continuation" "call/cc"
 	       "call-with-input-file" "call-with-output-file" "case" "cond"
-	       "do" "else" "for-each" "if" "lambda" "λ"
+	       "do" "else" "for-each" "if" "lambda" "λ" "def" "lambda-list"
+               "lambda-values" "lambda-pair" ;; please, just general lambda\b ?
+               "def." "def.*"
+               "TEST" "defmacro"
 	       "let" "let*" "let-syntax" "letrec" "letrec-syntax"
 	       ;; R6RS library subforms.
 	       "export" "import"
