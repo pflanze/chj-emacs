@@ -402,6 +402,7 @@ it is put to the start of the list."
 			 ([(control meta n)] . up-list)
 			 ))
 	      (define-key inferior-scheme-mode-map (car p) (cdr p)))
+            (paredit-mode +1)
 	    "yes, append it"))
 
 
