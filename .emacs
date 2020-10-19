@@ -397,12 +397,18 @@ it is put to the start of the list."
 
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
+            (paredit-mode 1)
+
 	    (dolist (p `(,@cj-first-fn-block
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
+                         ;; and revert some bindings from paredit-mode:
+                         ([(control d)] . comint-delchar-or-maybe-eof)
+                         ([(control d)] . comint-delchar-or-maybe-eof)
+                         ([(meta r)] . comint-history-isearch-backward-regexp)
 			 ))
 	      (define-key inferior-scheme-mode-map (car p) (cdr p)))
-            (paredit-mode 1)
+
 	    "yes, append it"))
 
 
