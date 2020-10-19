@@ -407,7 +407,7 @@ it is put to the start of the list."
                          ([(control d)] . comint-delchar-or-maybe-eof)
                          ([(meta r)] . comint-history-isearch-backward-regexp)
 			 ))
-	      (define-key inferior-scheme-mode-map (car p) (cdr p)))
+	      (local-set-key (car p) (cdr p)))
 
 	    "yes, append it"))
 
