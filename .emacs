@@ -402,7 +402,7 @@ it is put to the start of the list."
 			 ([(control meta n)] . up-list)
 			 ))
 	      (define-key inferior-scheme-mode-map (car p) (cdr p)))
-            (paredit-mode +1)
+            (paredit-mode 1)
 	    "yes, append it"))
 
 
@@ -441,7 +441,7 @@ it is put to the start of the list."
 
 
 (add-hook 'scheme-mode-hook (lambda ()
-			      (paredit-mode +1)
+			      (paredit-mode 1)
 			      (auto-revert-mode +1)))
 
 
