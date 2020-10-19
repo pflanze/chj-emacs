@@ -421,7 +421,9 @@ it is put to the start of the list."
 
 (add-hook 'scheme-mode-hook
 	  (lambda()
-	    (imenu-add-menubar-index)
+            (paredit-mode 1)
+            (auto-revert-mode +1)
+            (imenu-add-menubar-index)
 
 	    (dolist (p `(([(meta q)] . reindent-lisp)
 			 ([(return)] . newline-and-indent)
@@ -439,10 +441,6 @@ it is put to the start of the list."
 	      (define-key scheme-mode-map (car p) (cdr p))))
 	  "yes, append it")
 
-
-(add-hook 'scheme-mode-hook (lambda ()
-			      (paredit-mode 1)
-			      (auto-revert-mode +1)))
 
 
 (add-hook 'haskell-mode-hook
