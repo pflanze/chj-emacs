@@ -43,9 +43,9 @@
  '(show-paren-match-face ((((class color)) (:background "#d8f0ff"))));;"#c0e8ff"
  '(show-paren-mismatch-face ((((class color)) (:background "red")))))
 
-;he die obigen match farben settings ausser der letzten haben gar keine wirkung?!
-
-;;^- pc-se* zeug muss aktiv sein damit forward-sexp-mark vorhanden ist. so komisch.
+;; Notes about above:
+;; - those match color settings, except for the last one, have no effect?
+;; - pc-se* must be active so that forward-sexp-mark is available (why?)
 
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
