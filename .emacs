@@ -395,6 +395,14 @@ it is put to the start of the list."
 (add-hook 'slime-repl-mode-hook 'cj-set-slime-keybindings t)
 (add-hook 'slime-repl-read-mode-hook 'cj-set-slime-keybindings t)
 
+
+;;;   (add-to-list 'load-path "/path/to/elisp")
+(if (file-exists-p "~/.emacs.d/lisp/paredit.el")
+    (load-file "~/.emacs.d/lisp/paredit.el"))
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code."
+  t)
+
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
             (paredit-mode 1)
@@ -410,20 +418,6 @@ it is put to the start of the list."
 	      (local-set-key (car p) (cdr p)))
 
 	    "yes, append it"))
-
-
-;;;   (add-to-list 'load-path "/path/to/elisp")
-(if (file-exists-p "~/.emacs.d/lisp/paredit.el")
-    (load-file "~/.emacs.d/lisp/paredit.el"))
-(autoload 'paredit-mode "paredit"
-  "Minor mode for pseudo-structurally editing Lisp code."
-  t)
-
-
-(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
-  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
-  (require 'julia-mode))
-
 
 (add-hook 'scheme-mode-hook
 	  (lambda()
@@ -446,6 +440,13 @@ it is put to the start of the list."
 			 ))
 	      (define-key scheme-mode-map (car p) (cdr p))))
 	  "yes, append it")
+
+
+
+
+(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
+  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
+  (require 'julia-mode))
 
 
 
