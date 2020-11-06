@@ -402,15 +402,15 @@ it is put to the start of the list."
 
 (add-hook 'inferior-scheme-mode-hook
 	  (lambda()
-            (paredit-mode 1)
+            ;;(paredit-mode 1)
 
 	    (dolist (p `(,@cj-first-fn-block
 			 ([(control meta p)] . backward-down-list)
 			 ([(control meta n)] . up-list)
                          ;; and revert some bindings from paredit-mode:
-                         ([(control d)] . comint-delchar-or-maybe-eof)
-                         ([(control d)] . comint-delchar-or-maybe-eof)
-                         ([(meta r)] . comint-history-isearch-backward-regexp)
+                         ;; ([(control d)] . comint-delchar-or-maybe-eof)
+                         ;; ([(control d)] . comint-delchar-or-maybe-eof)
+                         ;; ([(meta r)] . comint-history-isearch-backward-regexp)
 			 ))
 	      (local-set-key (car p) (cdr p)))
 
