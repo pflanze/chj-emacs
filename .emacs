@@ -396,9 +396,6 @@ it is put to the start of the list."
 (add-hook 'slime-repl-read-mode-hook 'cj-set-slime-keybindings t)
 
 
-;;;   (add-to-list 'load-path "/path/to/elisp")
-(if (file-exists-p "~/.emacs.d/lisp/paredit.el")
-    (load-file "~/.emacs.d/lisp/paredit.el"))
 (autoload 'paredit-mode "paredit"
   "Minor mode for pseudo-structurally editing Lisp code."
   t)
