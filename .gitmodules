@@ -4,3 +4,6 @@
 [submodule ".emacs.d/eglot"]
 	path = .emacs.d/eglot
 	url = https://github.com/joaotavora/eglot/
+[submodule ".emacs.d/emacs27"]
+	path = .emacs.d/emacs27
+	url = https://git.savannah.gnu.org/git/emacs.git

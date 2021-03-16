@@ -60,6 +60,7 @@
 
 (when (file-exists-p "~/.emacs.d/eglot/eglot.el")
   (add-to-list 'load-path "~/.emacs.d/eglot/")
+  (load-file "~/.emacs.d/emacs27/lisp/jsonrpc.el")
   (require 'eglot))
 
 
