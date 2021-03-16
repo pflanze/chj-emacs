@@ -50,6 +50,20 @@
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
+(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
+  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
+  (require 'julia-mode))
+
+(when (file-exists-p "~/.emacs.d/elixir-mode/elixir-mode.el")
+  (add-to-list 'load-path "~/.emacs.d/elixir-mode/")
+  (require 'elixir-mode))
+
+(when (file-exists-p "~/.emacs.d/eglot/eglot.el")
+  (add-to-list 'load-path "~/.emacs.d/eglot/")
+  (require 'eglot))
+
+
+
 (when (file-exists-p "~/.opam/system/share/emacs/site-lisp/")
    (add-to-list 'load-path "~/.opam/system/share/emacs/site-lisp/"))
 
@@ -439,11 +453,6 @@ it is put to the start of the list."
 	  "yes, append it")
 
 
-
-
-(when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
-  (add-to-list 'load-path "~/.emacs.d/julia-emacs")
-  (require 'julia-mode))
 
 
 
