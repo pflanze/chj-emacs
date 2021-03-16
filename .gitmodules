@@ -1,3 +1,6 @@
 [submodule ".emacs.d/elixir-mode"]
 	path = .emacs.d/elixir-mode
 	url = https://github.com/elixir-editors/emacs-elixir
+[submodule ".emacs.d/eglot"]
+	path = .emacs.d/eglot
+	url = https://github.com/joaotavora/eglot/
