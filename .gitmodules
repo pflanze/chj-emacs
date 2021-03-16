@@ -7,3 +7,6 @@
 [submodule ".emacs.d/emacs27"]
 	path = .emacs.d/emacs27
 	url = https://git.savannah.gnu.org/git/emacs.git
+[submodule ".emacs.d/keycast"]
+	path = .emacs.d/keycast
+	url = https://github.com/tarsius/keycast
