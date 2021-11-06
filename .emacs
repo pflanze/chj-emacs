@@ -163,7 +163,7 @@
   (interactive)
   ;; insert a space unless we are after whitespace or a left paren or bracket
   (case (char-before)
-    ((?( ? ?\n ?\t) 
+    ((?\( ? ?\n ?\t)
       nil)
     ;; huh, paren matcher in elisp mode doesn't handle this syntax right
     (t 
