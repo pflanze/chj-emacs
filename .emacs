@@ -11,7 +11,6 @@
   ;; Your init file should contain only one such instance.
  '(CUA-mode-global-mark-cursor-blink nil)
  '(CUA-mode-overwrite-cursor-color "orange")
- '(blink-cursor nil)
  '(case-fold-search t)
  '(compilation-finish-function (quote ude-compilation-finish-function) t)
  '(current-language-environment "UTF-8")
@@ -33,6 +32,9 @@
  '(strokes-mode nil nil (strokes))
  '(transient-mark-mode t)
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
+
+(blink-cursor-mode 0)
+
 (custom-set-faces
   ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
   ;; Your init file should contain only one such instance.
