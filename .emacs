@@ -47,6 +47,7 @@
 ;; - those match color settings, except for the last one, have no effect?
 ;; - pc-se* must be active so that forward-sexp-mark is available (why?)
 
+(set-face-attribute 'region nil :background "#ee6")
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
