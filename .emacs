@@ -57,9 +57,12 @@
   (add-to-list 'load-path "~/.emacs.d/julia-emacs")
   (require 'julia-mode))
 
-(when (file-exists-p "~/.emacs.d/elixir-mode/elixir-mode.el")
-  (add-to-list 'load-path "~/.emacs.d/elixir-mode/")
-  (require 'elixir-mode))
+;; Now fails to load with
+;;   (file-missing "Cannot open load file" "No such file or directory" "pkg-info")
+;; :
+;; (when (file-exists-p "~/.emacs.d/elixir-mode/elixir-mode.el")
+;;   (add-to-list 'load-path "~/.emacs.d/elixir-mode/")
+;;   (require 'elixir-mode))
 
 (when (file-exists-p "~/.emacs.d/eglot/eglot.el")
   (add-to-list 'load-path "~/.emacs.d/eglot/")
