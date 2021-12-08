@@ -717,3 +717,23 @@ it is put to the start of the list."
 	  (lambda ()
 	    (setq company-backends '(company-elm))))
 
+
+;; === GUD =======================================================
+
+(defvar cj-gud-keybindings
+  '(
+    ([f9] . gud-down) ;; towards showing more frames
+    ([f10] . gud-up) ;; towards showing older frames
+    ([f11] . gud-step)
+    ([(shift f11)] . gud-stepi)
+    ([f12] . gud-next)
+    ([(shift f12)] . gud-nexti)
+    ))
+
+(defun cj-gud-keybindings-install ()
+  (dolist (p cj-gud-keybindings)
+          (define-key gud-mode-map (car p) (cdr p))
+          (define-key c-mode-map (car p) (cdr p))))
+
+(add-hook 'gud-mode-hook 'cj-gud-keybindings-install)
+
