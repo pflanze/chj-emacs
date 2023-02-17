@@ -36,7 +36,7 @@ haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/f-el .
 
 .emacs.d/s-el: .emacs.d/s-el/s.el
 .emacs.d/s-el/s.el:
-	sbin/apt-install-and-symlink-dir s-el s.el .emacs.d/s-el elpa-s
+	sbin/apt-install-and-symlink-dir elpa-s s.el .emacs.d/s-el 
 
 
 # XXX  also building needs ` libtinfo-dev ` ?
