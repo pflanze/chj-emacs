@@ -24,7 +24,7 @@ haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/f-el .
 
 .emacs.d/dash-el: .emacs.d/dash-el/dash.el
 .emacs.d/dash-el/dash.el:
-	sbin/apt-install-and-symlink-dir dash-el dash.el .emacs.d/dash-el elpa-dash
+	sbin/apt-install-and-symlink-dir elpa-dash dash.el .emacs.d/dash-el 
 
 .emacs.d/flycheck: .emacs.d/flycheck/flycheck.el
 .emacs.d/flycheck/flycheck.el:

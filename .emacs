@@ -630,7 +630,7 @@ it is put to the start of the list."
 
 ;; === Haskell ============================================
 
-;; apt-get install dash-el
+;; apt-get install elpa-dash
 ;; apt-get install elpa-flycheck
 ;; apt-get install haskell-mode
 ;; apt-get install libtinfo-dev
