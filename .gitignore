@@ -1,3 +1,8 @@
+# native cache (emacs 28):
+/.emacs.d/eln-cache/
+
+# packages:
+
 /.emacs.d/dash-el
 /.emacs.d/elm-mode
 /.emacs.d/f-el
