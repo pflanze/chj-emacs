@@ -627,6 +627,10 @@ it is put to the start of the list."
 (setq scroll-conservatively 100)
 
 
+;; === Rust ===============================================
+
+(add-hook 'rust-mode-hook 'lsp-deferred)
+
 
 ;; === Haskell ============================================
 
