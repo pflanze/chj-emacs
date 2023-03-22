@@ -16,3 +16,6 @@
 # same way in the makefile); dunno?
 /.emacs.d/company
 /.emacs.d/haskell-mode
+
+# state files
+/.emacs.d/.lsp-session-v1
