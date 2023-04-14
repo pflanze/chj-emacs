@@ -1,5 +1,5 @@
 #!/bin/bash
 
-ulimit -S -v 6300000
+# ulimit -S -v 6300000
 
 exec _gam-emacs-gdb "$@"
