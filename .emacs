@@ -51,6 +51,11 @@
 
 (set-face-attribute 'region nil :background "#ee6")
 
+;; Geometry
+;; XXX via something automatic
+(add-to-list 'default-frame-alist '(height . 43))
+(add-to-list 'default-frame-alist '(width . 90))
+
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 (when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
