@@ -636,6 +636,8 @@ it is put to the start of the list."
 
 (add-hook 'rust-mode-hook 'lsp-deferred)
 
+(setq lsp-rust-analyzer-cargo-auto-reload nil)
+
 
 ;; === Haskell ============================================
 
