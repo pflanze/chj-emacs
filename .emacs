@@ -87,48 +87,6 @@
 (when (file-exists-p "~/.opam/system/share/emacs/site-lisp/")
    (add-to-list 'load-path "~/.opam/system/share/emacs/site-lisp/"))
 
-(autoload 'utop "utop" "toplevel for OCaml" t)
-(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
-(setq utop-command "opam config exec -- utop -emacs")
-(add-hook 'tuareg-mode-hook 'utop-minor-mode)
-
-
-;; SLIME48
-(setq user-home (getenv "HOME"))
-(add-to-list 'load-path (concat user-home "/CAMPBELL/SLIME48/slime48"))
-
-(autoload 'slime "slime"
-  "Start an inferior^_superior Lisp and connect to its Swank server."
-  t)
-
-(autoload 'slime-mode "slime"
-  "SLIME: The Superior Lisp Interaction Mode for Emacs (minor-mode)."
-  t)
-
-(eval-after-load "slime"
-  '(progn
-     (slime-setup)
-     (setq slime-lisp-implementations
-           `((s48 ("scheme48") :init slime48-init-command)
-             ,@slime-lisp-implementations))))
-
-(autoload 'slime48-init-command "slime48"
-  "Return a string to initialize Scheme48 running under SLIME.")
-
-;; This snippet lets you specify a scheme48-package local variable,
-;; in a file's -*- line or local variables section, and have SLIME48
-;; automatically evaluate code in the right package.  For instance,
-;; all of my Scheme48 source files start with:
-;;   ;;; -*- Mode: Scheme; scheme48-package: ... -*-
-(eval-after-load "slime48"
-  '(add-hook 'slime-mode-hook
-             (lambda ()
-               (if (and (boundp 'scheme48-package)
-                        scheme48-package)
-                   (setq slime-buffer-package
-                         (with-output-to-string
-                           (princ scheme48-package)))))))
-;; / SLIME48
 
 
 (require 'cl) ;; for |case| and |list*|
@@ -150,25 +108,6 @@
 	     auto-mode-alist))
 
 (setq-default indent-tabs-mode nil)
-
-
-'(if (equal (getenv "USER") "chrisclojure")
-    (progn
-      (load "/home/chrisclojure/.emacs.d/package.el")
-      (add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/") t)
-      (setq auto-mode-alist
-	    (cons '("\\.\\(?:clj)$" . clojure-mode)
-		  auto-mode-alist))
-      
-      (load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
-      
-      (add-to-list 'load-path "/home/chrisclojure/src/slime")
-					; ^ your SLIME directory
-      (setq inferior-lisp-program "lein swank")
-					; ^ your Lisp system
-      (require 'slime)
-      (slime-setup)))
 
 
 (defun cj-doublequote ()
@@ -208,67 +147,6 @@
 (global-set-key [(control meta up)] 'scroll-down-one)
 
 (global-set-key "\C-v" 'scroll-up)
-
-
-(autoload 'xsl-mode "xslide" "Major mode for XSL stylesheets." t)
-(add-hook 'xsl-mode-hook
-          'turn-on-font-lock)
-(setq auto-mode-alist
-      (append
-       (list
-        '("\\.fo" . xsl-mode)
-        '("\\.xsl" . xsl-mode)
-	)
-       auto-mode-alist))
-;; Uncomment if using abbreviations
-;(abbrev-mode t)
-
-
-; http://www.emacswiki.org/cgi-bin/wiki/CPerlMode
-; http://www.emacswiki.org/cgi-bin/wiki/IndentingPerl
-
-(setq cperl-indent-level 4)
-(setq cperl-font-lock t)
-(setq cperl-hairy t)
-
-
-(add-hook 'markdown-mode-hook
-	  (lambda ()
-	    (setq indent-tabs-mode nil)))
-
-(add-hook 'perl-mode-hook
-	  (lambda () 
-	    (define-key perl-mode-map [(return)] 
-	      (lambda () (interactive)
-		(perl-indent-command)
-		(newline-and-indent)))
-	    (define-key perl-mode-map [(shift return)] 'newline)
-	    (font-lock-mode)
-	    (imenu-add-menubar-index)))
-
-(add-hook 'cperl-mode-hook
-	  (lambda () 
-	    (define-key cperl-mode-map [(return)]
-	      (lambda ()
-		(interactive)
-		(cperl-indent-command)
-		(newline-and-indent)))
-	    (define-key cperl-mode-map [(shift return)] 'newline)
-	    (imenu-add-menubar-index)))
-
-
-(add-hook 'c-mode-common-hook
-          (lambda ()
-             (define-key c-mode-base-map [(return)] 'newline-and-indent)
-             (define-key c-mode-base-map [(shift return)] 'newline)
-	     (setq c-basic-offset 4) ;; default is 2!
-	     (setq c-default-style "linux") ;; default anyway?
-             (font-lock-mode)
-             (imenu-add-menubar-index)))
-
-
-(when (file-exists-p "~/src/arduino-mode/arduino-mode.el")
-  (load-file "~/src/arduino-mode/arduino-mode.el"))
 
 
 (require 'uniquify)
@@ -333,175 +211,9 @@ it is put to the start of the list."
 ;(global-set-key [(control shift iso-lefttab)] '(other-window -1))
 
 
-(if (= emacs-major-version 21)
-    (require 'ilisp))
-(require 'cmuscheme)
-
-
-; for Gambit-C
-(when (file-exists-p "~/.emacs.d/lisp/gambit.el")
-  (load-file "~/.emacs.d/lisp/gambit.el")
-  (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
-  (autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
-  (add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
-  (add-hook 'scheme-mode-hook (function gambit-mode))
-  (setq scheme-program-name "loop -c /opt/chj/emacs/bin/gam-emacs"))
-
-
-(defun gambit-show-definition (name)
-  "Bring up the definition of the given function or macro. Requires |show-def| from chj-schemelib's cj-env.scm."
-  (interactive (comint-get-source "Show definition of: "
-				  ;; XX bogus, use a different procedure?:
-				  scheme-prev-l/c-dir/file
-                                  scheme-source-modes
-				  nil))
-  (scheme-send-string (concat "(show-def " name "\)\n")))
-
-(defun gambit-show-definition-region (start end)
-  "Send the current region to gambit-show-definition."
-  (interactive "r")
-  (gambit-show-definition (buffer-substring start end)))
-
-(defun gambit-show-definition-last-sexp ()
-  (interactive)
-  (gambit-show-definition-region (save-excursion (backward-sexp) (point)) (point)))
-
-
-(when (file-exists-p "~/.emacs.d/lisp/pretty-lambdada.el")
-  (load-file "~/.emacs.d/lisp/pretty-lambdada.el")
-  (pretty-lambda-for-modes))
-
 
 (tool-bar-mode 0)
 
-
-(defun cj-noop ()
-  (interactive)
-  nil)
-
-(defun cj-up-list ()
-  (interactive)
-  (up-list)
-  (insert " "))
-
-(defun cj-type-lambda ()
-  (interactive)
-  (insert "lambda"))
-
-(defun cj-type-lambda-form ()
-  (interactive)
-  (if (file-exists-p ".use-lambda-square")
-      (insert "(lambda [])")
-    (insert "(lambda ())"))
-  (left-char 2))
-
-(defun cj-scheme-load-buffer ()
-  (interactive)
-  (save-buffer)
-  (scheme-load-file (buffer-file-name)))
-
-(defun cj-wget-repl ()
-  (interactive)
-  (shell-command "daemonize --bg -q 'wget http://127.0.0.1/cgi-bin/scmcgi/repl'"))
-
-
-(defvar cj-first-fn-block 
-  '(;; note, F4 does not work, f4 does
-    ([f2] . cj-up-list)
-    ([f3] . insert-parentheses)
-    ([f4] . move-past-close-and-reindent)
-    ([f5] . cj-scheme-load-buffer)
-    ([f6] . cj-wget-repl)
-    ([f8] . gambit-show-definition-last-sexp)
-    ([(control return)] . move-past-close-and-reindent)
-    ("ł" . cj-type-lambda-form)
-    ("Ł" . cj-type-lambda)))
-
-
-(defun cj-set-slime-keybindings ()
-  (dolist (p `(
-	       ,@cj-first-fn-block
-	       ))
-    ;;(define-key slime-mode-map (car p) (cdr p))
-    (local-set-key (car p) (cdr p))))
-
-(add-hook 'slime-mode-hook 'cj-set-slime-keybindings t)
-(add-hook 'slime-repl-mode-hook 'cj-set-slime-keybindings t)
-(add-hook 'slime-repl-read-mode-hook 'cj-set-slime-keybindings t)
-
-
-(autoload 'paredit-mode "paredit"
-  "Minor mode for pseudo-structurally editing Lisp code."
-  t)
-
-(add-hook 'inferior-scheme-mode-hook
-	  (lambda()
-            ;;(paredit-mode 1)
-
-	    (dolist (p `(,@cj-first-fn-block
-			 ([(control meta p)] . backward-down-list)
-			 ([(control meta n)] . up-list)
-                         ;; and revert some bindings from paredit-mode:
-                         ;; ([(control d)] . comint-delchar-or-maybe-eof)
-                         ;; ([(control d)] . comint-delchar-or-maybe-eof)
-                         ;; ([(meta r)] . comint-history-isearch-backward-regexp)
-			 ))
-	      (local-set-key (car p) (cdr p)))
-
-	    "yes, append it"))
-
-(add-hook 'scheme-mode-hook
-	  (lambda()
-            (paredit-mode 1)
-            (auto-revert-mode +1)
-            (imenu-add-menubar-index)
-
-	    (dolist (p `(([(meta q)] . reindent-lisp)
-			 ([(return)] . newline-and-indent)
-			 ([(meta left)] . backward-sexp)
-			 ([(meta right)] . forward-sexp)
-			 ([(meta shift left)] . backward-sexp-mark)
-			 ([(meta shift right)] . forward-sexp-mark)
-			 ([(control meta x)] . scheme-send-definition)
-			 ([(meta ret)] . scheme-send-definition)
-			 ([(shift return)] . newline)
-			 ,@cj-first-fn-block
-			 ([(control meta p)] . backward-down-list)
-			 ([(control meta n)] . up-list)
-			 ))
-	      (define-key scheme-mode-map (car p) (cdr p))))
-	  "yes, append it")
-
-
-
-
-
-(add-hook 'haskell-mode-hook
-          (lambda()
-	    (imenu-add-menubar-index)
-
-	    (dolist (p `(([(meta s)] . save-buffer)
-			 ))
-	      (define-key haskell-mode-map (car p) (cdr p))))
-          :append)
-
-
-
-
-(defun cj-tex-compile-in-cwd ()
-  (interactive)
-  (save-buffer)
-  (tex-compile "." (concat "latex -interaction=nonstopmode "
-			   (shell-quote-argument
-			    (buffer-file-name (current-buffer))))))
-
-(add-hook 'latex-mode-hook
-	  (lambda()
-	    (dolist (p `(
-			 ([(meta p)] . cj-tex-compile-in-cwd)
-			 ))
-	      (define-key latex-mode-map (car p) (cdr p))))
-	  "yes, append it")
 
 
 (put 'downcase-region 'disabled nil)
@@ -625,7 +337,7 @@ it is put to the start of the list."
 
 ;; X window (frame) title:
 (setq frame-title-format (list user-login-name ": %b"))
-;;  "@" system-name   only uses space, I never use emacs via remote X
+;;  "@" system-name   only uses up space, I never use emacs via remote X
 
 ;; emacs25 requires this so as not to duplicate all input lines in
 ;; inferior-scheme mode:
@@ -634,6 +346,208 @@ it is put to the start of the list."
 
 ;; Avoid jumping around in run-scheme or run-python windows
 (setq scroll-conservatively 100)
+
+
+
+;; === Scheme ===============================================
+
+
+;; SLIME48
+(setq user-home (getenv "HOME"))
+(add-to-list 'load-path (concat user-home "/CAMPBELL/SLIME48/slime48"))
+
+(autoload 'slime "slime"
+  "Start an inferior^_superior Lisp and connect to its Swank server."
+  t)
+
+(autoload 'slime-mode "slime"
+  "SLIME: The Superior Lisp Interaction Mode for Emacs (minor-mode)."
+  t)
+
+(eval-after-load "slime"
+  '(progn
+     (slime-setup)
+     (setq slime-lisp-implementations
+           `((s48 ("scheme48") :init slime48-init-command)
+             ,@slime-lisp-implementations))))
+
+(autoload 'slime48-init-command "slime48"
+  "Return a string to initialize Scheme48 running under SLIME.")
+
+;; This snippet lets you specify a scheme48-package local variable,
+;; in a file's -*- line or local variables section, and have SLIME48
+;; automatically evaluate code in the right package.  For instance,
+;; all of my Scheme48 source files start with:
+;;   ;;; -*- Mode: Scheme; scheme48-package: ... -*-
+(eval-after-load "slime48"
+  '(add-hook 'slime-mode-hook
+             (lambda ()
+               (if (and (boundp 'scheme48-package)
+                        scheme48-package)
+                   (setq slime-buffer-package
+                         (with-output-to-string
+                           (princ scheme48-package)))))))
+;; / SLIME48
+
+
+(if (= emacs-major-version 21)
+    (require 'ilisp))
+(require 'cmuscheme)
+
+
+; for Gambit-C
+(when (file-exists-p "~/.emacs.d/lisp/gambit.el")
+  (load-file "~/.emacs.d/lisp/gambit.el")
+  (autoload 'gambit-inferior-mode "gambit" "Hook Gambit mode into cmuscheme.")
+  (autoload 'gambit-mode "gambit" "Hook Gambit mode into scheme.")
+  (add-hook 'inferior-scheme-mode-hook (function gambit-inferior-mode))
+  (add-hook 'scheme-mode-hook (function gambit-mode))
+  (setq scheme-program-name "loop -c /opt/chj/emacs/bin/gam-emacs"))
+
+
+(defun gambit-show-definition (name)
+  "Bring up the definition of the given function or macro. Requires |show-def| from chj-schemelib's cj-env.scm."
+  (interactive (comint-get-source "Show definition of: "
+				  ;; XX bogus, use a different procedure?:
+				  scheme-prev-l/c-dir/file
+                                  scheme-source-modes
+				  nil))
+  (scheme-send-string (concat "(show-def " name "\)\n")))
+
+(defun gambit-show-definition-region (start end)
+  "Send the current region to gambit-show-definition."
+  (interactive "r")
+  (gambit-show-definition (buffer-substring start end)))
+
+(defun gambit-show-definition-last-sexp ()
+  (interactive)
+  (gambit-show-definition-region (save-excursion (backward-sexp) (point)) (point)))
+
+
+(when (file-exists-p "~/.emacs.d/lisp/pretty-lambdada.el")
+  (load-file "~/.emacs.d/lisp/pretty-lambdada.el")
+  (pretty-lambda-for-modes))
+
+
+
+(defun cj-noop ()
+  (interactive)
+  nil)
+
+(defun cj-up-list ()
+  (interactive)
+  (up-list)
+  (insert " "))
+
+(defun cj-type-lambda ()
+  (interactive)
+  (insert "lambda"))
+
+(defun cj-type-lambda-form ()
+  (interactive)
+  (if (file-exists-p ".use-lambda-square")
+      (insert "(lambda [])")
+    (insert "(lambda ())"))
+  (left-char 2))
+
+(defun cj-scheme-load-buffer ()
+  (interactive)
+  (save-buffer)
+  (scheme-load-file (buffer-file-name)))
+
+(defun cj-wget-repl ()
+  (interactive)
+  (shell-command "daemonize --bg -q 'wget http://127.0.0.1/cgi-bin/scmcgi/repl'"))
+
+
+(defvar cj-first-fn-block 
+  '(;; note, F4 does not work, f4 does
+    ([f2] . cj-up-list)
+    ([f3] . insert-parentheses)
+    ([f4] . move-past-close-and-reindent)
+    ([f5] . cj-scheme-load-buffer)
+    ([f6] . cj-wget-repl)
+    ([f8] . gambit-show-definition-last-sexp)
+    ([(control return)] . move-past-close-and-reindent)
+    ("ł" . cj-type-lambda-form)
+    ("Ł" . cj-type-lambda)))
+
+
+(defun cj-set-slime-keybindings ()
+  (dolist (p `(
+	       ,@cj-first-fn-block
+	       ))
+    ;;(define-key slime-mode-map (car p) (cdr p))
+    (local-set-key (car p) (cdr p))))
+
+(add-hook 'slime-mode-hook 'cj-set-slime-keybindings t)
+(add-hook 'slime-repl-mode-hook 'cj-set-slime-keybindings t)
+(add-hook 'slime-repl-read-mode-hook 'cj-set-slime-keybindings t)
+
+
+(autoload 'paredit-mode "paredit"
+  "Minor mode for pseudo-structurally editing Lisp code."
+  t)
+
+(add-hook 'inferior-scheme-mode-hook
+	  (lambda()
+            ;;(paredit-mode 1)
+
+	    (dolist (p `(,@cj-first-fn-block
+			 ([(control meta p)] . backward-down-list)
+			 ([(control meta n)] . up-list)
+                         ;; and revert some bindings from paredit-mode:
+                         ;; ([(control d)] . comint-delchar-or-maybe-eof)
+                         ;; ([(control d)] . comint-delchar-or-maybe-eof)
+                         ;; ([(meta r)] . comint-history-isearch-backward-regexp)
+			 ))
+	      (local-set-key (car p) (cdr p)))
+
+	    "yes, append it"))
+
+(add-hook 'scheme-mode-hook
+	  (lambda()
+            (paredit-mode 1)
+            (auto-revert-mode +1)
+            (imenu-add-menubar-index)
+
+	    (dolist (p `(([(meta q)] . reindent-lisp)
+			 ([(return)] . newline-and-indent)
+			 ([(meta left)] . backward-sexp)
+			 ([(meta right)] . forward-sexp)
+			 ([(meta shift left)] . backward-sexp-mark)
+			 ([(meta shift right)] . forward-sexp-mark)
+			 ([(control meta x)] . scheme-send-definition)
+			 ([(meta ret)] . scheme-send-definition)
+			 ([(shift return)] . newline)
+			 ,@cj-first-fn-block
+			 ([(control meta p)] . backward-down-list)
+			 ([(control meta n)] . up-list)
+			 ))
+	      (define-key scheme-mode-map (car p) (cdr p))))
+	  "yes, append it")
+
+
+;; === Clojure ===============================================
+
+
+'(if (equal (getenv "USER") "chrisclojure")
+    (progn
+      (load "/home/chrisclojure/.emacs.d/package.el")
+      (add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/") t)
+      (setq auto-mode-alist
+	    (cons '("\\.\\(?:clj)$" . clojure-mode)
+		  auto-mode-alist))
+      
+      (load "/home/chrisclojure/src/clojure-mode/clojure-mode.el")
+      
+      (add-to-list 'load-path "/home/chrisclojure/src/slime")
+					; ^ your SLIME directory
+      (setq inferior-lisp-program "lein swank")
+					; ^ your Lisp system
+      (require 'slime)
+      (slime-setup)))
 
 
 ;; === Rust ===============================================
@@ -677,6 +591,71 @@ it is put to the start of the list."
   (interactive)
   (shell-command-on-region (mark) (point) "shower" t t))
 
+
+(add-hook 'haskell-mode-hook
+          (lambda()
+	    (imenu-add-menubar-index)
+
+	    (dolist (p `(([(meta s)] . save-buffer)
+			 ))
+	      (define-key haskell-mode-map (car p) (cdr p))))
+          :append)
+
+
+
+;; === OCaml ============================================
+
+(autoload 'utop "utop" "toplevel for OCaml" t)
+(autoload 'utop-minor-mode "utop" "Minor mode for utop" t)
+(setq utop-command "opam config exec -- utop -emacs")
+(add-hook 'tuareg-mode-hook 'utop-minor-mode)
+
+
+;; === C ============================================
+
+(add-hook 'c-mode-common-hook
+          (lambda ()
+             (define-key c-mode-base-map [(return)] 'newline-and-indent)
+             (define-key c-mode-base-map [(shift return)] 'newline)
+	     (setq c-basic-offset 4) ;; default is 2!
+	     (setq c-default-style "linux") ;; default anyway?
+             (font-lock-mode)
+             (imenu-add-menubar-index)))
+
+
+(when (file-exists-p "~/src/arduino-mode/arduino-mode.el")
+  (load-file "~/src/arduino-mode/arduino-mode.el"))
+
+
+;; === Perl ============================================
+
+; http://www.emacswiki.org/cgi-bin/wiki/CPerlMode
+; http://www.emacswiki.org/cgi-bin/wiki/IndentingPerl
+
+(setq cperl-indent-level 4)
+(setq cperl-font-lock t)
+(setq cperl-hairy t)
+
+
+(add-hook 'perl-mode-hook
+	  (lambda () 
+	    (define-key perl-mode-map [(return)] 
+	      (lambda () (interactive)
+		(perl-indent-command)
+		(newline-and-indent)))
+	    (define-key perl-mode-map [(shift return)] 'newline)
+	    (font-lock-mode)
+	    (imenu-add-menubar-index)))
+
+(add-hook 'cperl-mode-hook
+	  (lambda () 
+	    (define-key cperl-mode-map [(return)]
+	      (lambda ()
+		(interactive)
+		(cperl-indent-command)
+		(newline-and-indent)))
+	    (define-key cperl-mode-map [(shift return)] 'newline)
+	    (imenu-add-menubar-index)))
 
 
 ;; === Elm ============================================
@@ -751,4 +730,48 @@ it is put to the start of the list."
           (define-key c-mode-map (car p) (cdr p))))
 
 (add-hook 'gud-mode-hook 'cj-gud-keybindings-install)
+
+
+;; === Markdown =======================================================
+
+(add-hook 'markdown-mode-hook
+	  (lambda ()
+	    (setq indent-tabs-mode nil)))
+
+
+;; === LaTex =======================================================
+
+(defun cj-tex-compile-in-cwd ()
+  (interactive)
+  (save-buffer)
+  (tex-compile "." (concat "latex -interaction=nonstopmode "
+			   (shell-quote-argument
+			    (buffer-file-name (current-buffer))))))
+
+(add-hook 'latex-mode-hook
+	  (lambda()
+	    (dolist (p `(
+			 ([(meta p)] . cj-tex-compile-in-cwd)
+			 ))
+	      (define-key latex-mode-map (car p) (cdr p))))
+	  "yes, append it")
+
+
+
+;; === XML =======================================================
+
+
+(autoload 'xsl-mode "xslide" "Major mode for XSL stylesheets." t)
+(add-hook 'xsl-mode-hook
+          'turn-on-font-lock)
+(setq auto-mode-alist
+      (append
+       (list
+        '("\\.fo" . xsl-mode)
+        '("\\.xsl" . xsl-mode)
+	)
+       auto-mode-alist))
+;; Uncomment if using abbreviations
+;(abbrev-mode t)
+
 
