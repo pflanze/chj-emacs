@@ -56,6 +56,10 @@
 (add-to-list 'default-frame-alist '(height . 43))
 (add-to-list 'default-frame-alist '(width . 90))
 
+
+(global-linum-mode)
+
+
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 (when (file-exists-p "~/.emacs.d/julia-emacs/julia-mode.el")
