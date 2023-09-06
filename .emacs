@@ -51,12 +51,6 @@
 
 (set-face-attribute 'region nil :background "#ee6")
 
-;; Geometry
-;; XXX via something automatic
-(add-to-list 'default-frame-alist '(height . 43))
-(add-to-list 'default-frame-alist '(width . 90))
-
-
 (global-linum-mode)
 
 
@@ -295,6 +289,29 @@ it is put to the start of the list."
   (set sym (alist-set (symbol-value sym) key val)))
 
 ;; ------------------------------------------------------------------
+
+;; Geometry
+
+(defun cj-default-frame-width (pixel-width pixel-height)
+  90)
+
+(defun cj-default-frame-height (pixel-width pixel-height)
+  ;; on novo2-testing:
+  ;; 43 for 1080
+  ;; 155 px for other stuff
+  (+ (floor (* (/ (- pixel-height 155) 925.0) 43.0)) 1))
+
+(defun cj-update-geometry ()
+  (let ((x (display-pixel-width))
+        (y (display-pixel-height)))
+    (alist-setsym 'default-frame-alist
+                  'width
+                  (cj-default-frame-width x y))
+    (alist-setsym 'default-frame-alist
+                  'height
+                  (cj-default-frame-height x y))))
+
+(add-hook 'before-make-frame-hook 'cj-update-geometry)
 
 ;; ==== parenface ==================================================
 ;; (von http://foldr.org/~michaelw/log/programming/lisp/lispin von haskell.org)
