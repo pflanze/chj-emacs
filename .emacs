@@ -253,6 +253,48 @@ it is put to the start of the list."
 (global-set-key [(control ^)] 'cj-tim)
 
 
+;; ------------------------------------------------------------------
+;; Box abstraction
+
+(defun box (v) (cons 'box v))
+(defun boxp (v) (and (consp v) (eq (car v) 'box)))
+(defun check-box (v) (if (not (boxp v)) (error "not a box" v)))
+(defun setbox (b v) (check-box b) (setcdr b v))
+(defun unbox (b) (check-box b) (cdr b))
+
+;; ------------------------------------------------------------------
+;; Set a mapping in an alist safely and (hopefully) efficiently
+
+(defun alist-set-helper (l key val found)
+  (if (null l)
+      l
+      (let ((fst (car l)))
+        (if (eq (car fst) key)
+            (progn
+             (setbox found t)
+             (if (equal (cdr fst) val)
+                 ;; no change needed
+                 l
+                 ;; remove it
+                 (cdr l)))
+            (let ((r (alist-set-helper (cdr l) key val found)))
+              (if (eq r (cdr l))
+                  l
+                  (cons fst r)))))))
+
+(defun alist-set (l key val)
+  (let* ((found (box nil))
+         (l* (alist-set-helper l key val found)))
+    (if (and (unbox found)
+             (eq l* l))
+        l
+        (cons (cons key val)
+              l*))))
+
+(defun alist-setsym (sym key val)
+  (set sym (alist-set (symbol-value sym) key val)))
+
+;; ------------------------------------------------------------------
 
 ;; ==== parenface ==================================================
 ;; (von http://foldr.org/~michaelw/log/programming/lisp/lispin von haskell.org)
