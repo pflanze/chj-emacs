@@ -318,31 +318,46 @@ it is put to the start of the list."
 
 ;; Geometry
 
-(defun cj-default-frame-width (pixel-width pixel-height)
-  90)
+;; This will be overridden by `e` from chj-rustbin, with (cons width height):
+(defvar chj-rustbin:x-display-dimensions nil)
 
-(defun cj-default-frame-height (pixel-width pixel-height)
-  ;; on novo2-testing:
-  ;; 43 for 1080
-  ;; 155 px for other stuff
-  (max 20
-       (+ (floor (* (/ (- pixel-height 155) 925.0) 43.0)) 1)))
+;; Returns a pair (width . height), or nil if `e` didn't set the above
+;; and emacs has no X connection (yet).
+(defun get-x-display-dimensions ()
+  (let ((p (cons (condition-case nil
+                                 (x-display-pixel-width)
+                                 (t (car chj-rustbin:x-display-dimensions)))
+                 (condition-case nil
+                                 (x-display-pixel-height)
+                                 (t (cdr chj-rustbin:x-display-dimensions))))))
+    (if (equal p (cons nil nil))
+        nil
+        p)))
+
+;; Maps (display-pixel-width . display-pixel-height) to
+;; (geometry-width . geometry-height)
+(defun cj-default-geometry (display-dimensions)
+  (cons 90
+        ;; on novo2-testing:
+        ;; 43 for 1080
+        ;; 155 px for other stuff
+        (+ (floor (* (/ (- (cdr display-dimensions) 155) 925.0) 43.0)) 1)))
 
 (defun cj-update-geometry ()
-  (let ((x (display-pixel-width))
-        (y (display-pixel-height)))
-    ;; Use destructive alist-set! because make-frame is copying the
-    ;; mappings *before* running the before-make-frame-hook:
-    (alist-set!sym 'default-frame-alist
-                   'width
-                   (cj-default-frame-width x y))
-    (alist-set!sym 'default-frame-alist
-                   'height
-                   (cj-default-frame-height x y))))
+  (if-let (dim (get-x-display-dimensions))
+          (let ((geom (cj-default-geometry dim)))
+            ;; Use destructive alist-set! because make-frame is copying the
+            ;; mappings *before* running the before-make-frame-hook:
+            (alist-set!sym 'default-frame-alist
+                           'width
+                           (car geom))
+            (alist-set!sym 'default-frame-alist
+                           'height
+                           (cdr geom)))))
 
 ;; Ensure the mappings exist before running emacsclient the first
 ;; time, so that destructive alist-set! will actually be destructive:
-(cj-update-geometry)
+;;(cj-update-geometry)
 
 (add-hook 'before-make-frame-hook 'cj-update-geometry)
 
