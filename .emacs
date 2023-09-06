@@ -288,6 +288,32 @@ it is put to the start of the list."
 (defun alist-setsym (sym key val)
   (set sym (alist-set (symbol-value sym) key val)))
 
+
+;; Set a mapping in an alist via mutation if a mapping already exists
+;; (creating a new mapping if missing)
+
+;; Returns t if it was done (it did find the mapping).
+(defun alist-set!-helper (l key val)
+  (if (null l)
+      nil
+      (let ((fst (car l)))
+        (if (eq (car fst) key)
+            (progn
+             (setcdr fst val)
+             )
+            (alist-set!-helper (cdr l) key val)))))
+
+;; Destructive variang of alist-set; need to use the return value for
+;; the case of it having added a new mapping, though.
+(defun alist-set! (l key val)
+  (if (alist-set!-helper l key val)
+      l
+      (cons (cons key val)
+            l)))
+
+(defun alist-set!sym (sym key val)
+  (set sym (alist-set! (symbol-value sym) key val)))
+
 ;; ------------------------------------------------------------------
 
 ;; Geometry
@@ -305,12 +331,18 @@ it is put to the start of the list."
 (defun cj-update-geometry ()
   (let ((x (display-pixel-width))
         (y (display-pixel-height)))
-    (alist-setsym 'default-frame-alist
-                  'width
-                  (cj-default-frame-width x y))
-    (alist-setsym 'default-frame-alist
-                  'height
-                  (cj-default-frame-height x y))))
+    ;; Use destructive alist-set! because make-frame is copying the
+    ;; mappings *before* running the before-make-frame-hook:
+    (alist-set!sym 'default-frame-alist
+                   'width
+                   (cj-default-frame-width x y))
+    (alist-set!sym 'default-frame-alist
+                   'height
+                   (cj-default-frame-height x y))))
+
+;; Ensure the mappings exist before running emacsclient the first
+;; time, so that destructive alist-set! will actually be destructive:
+(cj-update-geometry)
 
 (add-hook 'before-make-frame-hook 'cj-update-geometry)
 
