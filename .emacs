@@ -343,7 +343,7 @@ it is put to the start of the list."
             ;; 155 px for other stuff
             (+ (floor (* (/ (- (cdr display-dimensions) 155) 925.0) 43.0)) 1)
             ;; 52 for 1080
-            (+ (floor (* (/ (- (cdr display-dimensions) 155) 925.0) 52.0)) 1))))
+            (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 52.0)) 1))))
 
 (defun cj-update-geometry ()
   (if-let (dim (get-x-display-dimensions))
