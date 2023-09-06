@@ -299,7 +299,8 @@ it is put to the start of the list."
   ;; on novo2-testing:
   ;; 43 for 1080
   ;; 155 px for other stuff
-  (+ (floor (* (/ (- pixel-height 155) 925.0) 43.0)) 1))
+  (max 20
+       (+ (floor (* (/ (- pixel-height 155) 925.0) 43.0)) 1)))
 
 (defun cj-update-geometry ()
   (let ((x (display-pixel-width))
