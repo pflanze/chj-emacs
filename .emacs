@@ -664,6 +664,20 @@ it is put to the start of the list."
 
 (setq lsp-rust-analyzer-cargo-auto-reload nil)
 
+(defun cj-insert-rust-test-template ()
+  (interactive)
+  (insert "#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn t_() {
+    }
+    #[test]
+    fn t_() -> Result<()> {
+    }
+}
+"))
 
 ;; === Haskell ============================================
 
