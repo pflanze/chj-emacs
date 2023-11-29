@@ -337,7 +337,7 @@ it is put to the start of the list."
 ;; Maps (display-pixel-width . display-pixel-height) to
 ;; (geometry-width . geometry-height)
 (defun cj-default-geometry (display-dimensions)
-  (cons 90
+  (cons 100
         (if (equal (getenv "CHJHOSTNAME") "novo2-testing")
             ;; 44 for 1080, 30 for 768
             (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 42.0)) 1)
