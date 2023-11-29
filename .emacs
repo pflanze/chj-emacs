@@ -7,42 +7,47 @@
     (package-initialize))
 
 (custom-set-variables
-  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(CUA-mode-global-mark-cursor-blink nil)
  '(CUA-mode-overwrite-cursor-color "orange")
  '(case-fold-search t)
- '(compilation-finish-function (quote ude-compilation-finish-function) t)
+ '(compilation-finish-function 'ude-compilation-finish-function t)
  '(current-language-environment "UTF-8")
  '(default-input-method "rfc1345")
  '(delete-selection-mode t nil (delsel))
  '(global-font-lock-mode t nil (font-lock))
  '(kill-whole-line t)
+ '(lsp-rust-analyzer-experimental-proc-attr-macros t)
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
  '(mouse-yank-at-point t)
- '(paren-mode (quote paren) nil (paren))
+ '(paren-mode 'paren nil (paren))
  '(pc-select-selection-keys-only t)
- '(pc-selection-mode t nil (pc-select))
+ '(pc-selection-mode t)
  '(quack-pretty-lambda-p t)
  '(rmail-summary-scroll-between-messages t t)
- '(scroll-bar-mode (quote right))
+ '(scroll-bar-mode 'right)
  '(show-paren-delay 0)
  '(show-paren-mode t nil (paren))
  '(strokes-mode nil nil (strokes))
  '(transient-mark-mode t)
- '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
+ '(uniquify-buffer-name-style 'reverse nil (uniquify)))
 
 (blink-cursor-mode 0)
 
 (custom-set-faces
-  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(paren-face-match ((((class color)) (:background "#f070ff"))))
  '(paren-face-mismatch ((((class color)) (:foreground "white" :background "red"))))
  '(paren-match ((t (:background "#f070ff"))))
  '(paren-mismatch ((t (:background "red"))))
- '(show-paren-match-face ((((class color)) (:background "#d8f0ff"))));;"#c0e8ff"
+ '(show-paren-match-face ((((class color)) (:background "#d8f0ff"))))
  '(show-paren-mismatch-face ((((class color)) (:background "red")))))
 
 ;; Notes about above:
