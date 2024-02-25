@@ -338,11 +338,7 @@ it is put to the start of the list."
 ;; (geometry-width . geometry-height)
 (defun cj-default-geometry (display-dimensions)
   (cons 100
-        (if (equal (getenv "CHJHOSTNAME") "novo2-testing")
-            ;; 44 for 1080, 30 for 768
-            (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 42.0)) 1)
-            ;; 54 for 1080, 37 for 768
-            (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 52.0)) 1))))
+        (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 46.0)) 1)))
 
 (defun cj-update-geometry ()
   (if-let (dim (get-x-display-dimensions))
