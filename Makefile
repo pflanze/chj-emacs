@@ -13,7 +13,7 @@ haskell: .emacs.d/haskell-mode .emacs.d/company .emacs.d/dash-el .emacs.d/f-el .
 # remember, can't use dirs as make targets!
 .emacs.d/haskell-mode: .emacs.d/haskell-mode/haskell.el
 .emacs.d/haskell-mode/haskell.el:
-	sbin/apt-install-and-symlink-dir haskell-mode haskell.el .emacs.d/haskell-mode elpa-haskell-mode
+	sbin/apt-install-and-symlink-dir elpa-haskell-mode haskell.el .emacs.d/haskell-mode elpa-haskell-mode
 
 # XX ` elpa-epl ` is also installed but what for?
 
