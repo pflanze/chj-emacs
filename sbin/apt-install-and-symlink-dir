@@ -22,7 +22,11 @@ testedfilename=$2
 targetdir=$3
 alternatepackagename=${4-}
 
-apt-get install -y "$packagename"
+if [ "$USER" != root ]; then
+    echo "PLEASE RUN AS root:" apt-get install -y "$packagename"
+else
+    apt-get install -y "$packagename"
+fi
 
 # (Note: printf '%q' does not escape e.g. dot, it's not for regular
 # expressions.)
