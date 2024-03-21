@@ -29,7 +29,6 @@
  '(scroll-bar-mode (quote right))
  '(show-paren-delay 0)
  '(show-paren-mode t nil (paren))
- '(strokes-mode nil nil (strokes))
  '(transient-mark-mode t)
  '(uniquify-buffer-name-style (quote reverse) nil (uniquify)))
 
