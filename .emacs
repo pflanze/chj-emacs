@@ -51,7 +51,8 @@
 
 (set-face-attribute 'region nil :background "#ee6")
 
-(global-linum-mode)
+;;(global-linum-mode)
+(global-display-line-numbers-mode)
 
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
