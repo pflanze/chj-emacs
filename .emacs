@@ -675,6 +675,29 @@ mod tests {
 }
 "))
 
+
+;; === C++ ===============================================
+
+(add-hook 'c++-mode-hook 'lsp-deferred)
+
+;; "foo-16" -> 16, "foo" -> 0 hmm.
+(defun cj-path-version (path)
+  (string-to-number (car (last (split-string path "-")))))
+
+(defun cj-sort (items access cmp)
+  (sort items (lambda (a b)
+                (funcall cmp (funcall access a) (funcall access b)))))
+
+(defun cj-first-sorted (items access cmp)
+  (car (cj-sort items access cmp)))
+
+(let* ((clangds (file-expand-wildcards "/usr/bin/clangd-*"))
+       (clangd (cj-first-sorted clangds 'cj-path-version '>)))
+  (if clangd
+      (setq lsp-clangd-binary-path clangd)
+      (warn "missing clangd, install one at /usr/bin/clangd-*")))
+
+
 ;; === Haskell ============================================
 
 ;; apt-get install elpa-dash
