@@ -683,8 +683,6 @@ mod tests {
 
 ;; === C++ ===============================================
 
-(add-hook 'c++-mode-hook 'lsp-deferred)
-
 ;; "foo-16" -> 16, "foo" -> 0 hmm.
 (defun cj-path-version (path)
   (string-to-number (car (last (split-string path "-")))))
@@ -699,8 +697,18 @@ mod tests {
 (let* ((clangds (file-expand-wildcards "/usr/bin/clangd-*"))
        (clangd (cj-first-sorted clangds 'cj-path-version '>)))
   (if clangd
-      (setq lsp-clangd-binary-path clangd)
-      (warn "missing clangd, install one at /usr/bin/clangd-*")))
+      (progn
+       (setq cj-clangd clangd)
+       (setq lsp-clangd-binary-path cj-clangd))
+      (progn
+       (setq cj-clangd nil)
+       (warn "missing clangd, install one at /usr/bin/clangd-*"))))
+
+(add-hook 'c++-mode-hook 'lsp-deferred)
+;; and, stupid lsp, override it again after it loaded?
+(add-hook 'c++-mode-hook (lambda ()
+                           (if cj-clangd
+                               (setq lsp-clangd-binary-path cj-clangd))))
 
 
 ;; === Haskell ============================================
