@@ -338,7 +338,7 @@ it is put to the start of the list."
 ;; (geometry-width . geometry-height)
 (defun cj-default-geometry (display-dimensions)
   (cons 104 ;; 4 for the line numbering
-        (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 46.0)) 1)))
+        (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 41.0)) 1)))
 
 (defun cj-update-geometry ()
   (if-let (dim (get-x-display-dimensions))
