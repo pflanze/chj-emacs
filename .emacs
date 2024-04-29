@@ -929,3 +929,14 @@ mod tests {
 ;(abbrev-mode t)
 
 
+;; =======================================================================
+
+(require 'ansi-color)
+
+(defun display-ansi-colors ()
+  "Display ANSI colors in the current buffer (even if read-only)."
+  (interactive)
+  ;; inhibit-read-only to apply colors to read-only buffers (e.g., log files)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max))))
+
