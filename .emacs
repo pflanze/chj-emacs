@@ -933,10 +933,11 @@ mod tests {
 
 (require 'ansi-color)
 
+;; https://stackoverflow.com/questions/23378271/how-do-i-display-ansi-color-codes-in-emacs-for-any-mode
 (defun display-ansi-colors ()
   "Display ANSI colors in the current buffer (even if read-only)."
   (interactive)
   ;; inhibit-read-only to apply colors to read-only buffers (e.g., log files)
   (let ((inhibit-read-only t))
-    (ansi-color-apply-on-region (point-min) (point-max))))
+    (ansi-color-apply-on-region (point-min) (point-max) t)))
 
