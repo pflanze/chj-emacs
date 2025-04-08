@@ -28,6 +28,7 @@
  '(pc-selection-mode t)
  '(quack-pretty-lambda-p t)
  '(rmail-summary-scroll-between-messages t t)
+ '(safe-local-variable-values '((js-indent-level . 2)))
  '(scroll-bar-mode 'right)
  '(show-paren-delay 0)
  '(show-paren-mode t nil (paren))
