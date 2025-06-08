@@ -5,7 +5,7 @@ default: rust
 lsp: .emacs.d/lsp-mode
 .emacs.d/lsp-mode: .emacs.d/lsp-mode/lsp-mode.el
 .emacs.d/lsp-mode/lsp-mode.el:
-	sbin/git-clone-commit https://github.com/pflanze/lsp-mode lsp-mode 7b0da2ffc4761fc26e51f68748895242cdc94c36 --shallow-exclude=8861252880f6c2f6374a7bca2b945e6447eebd5a  --shallow-exclude=b15ac63accfd56c585aee776cde19b68328f3b90
+	sbin/git-clone-commit https://github.com/pflanze/lsp-mode lsp-mode 7b0da2ffc4761fc26e51f68748895242cdc94c36
 
 
 rust: lsp
