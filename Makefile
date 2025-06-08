@@ -1,4 +1,5 @@
-default: julia haskell
+default: rust
+#default: julia haskell
 
 
 lsp: .emacs.d/lsp-mode
