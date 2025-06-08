@@ -1,6 +1,15 @@
 default: julia haskell
 
 
+lsp: .emacs.d/lsp-mode
+.emacs.d/lsp-mode: .emacs.d/lsp-mode/lsp-mode.el
+.emacs.d/lsp-mode/lsp-mode.el:
+	sbin/git-clone-commit https://github.com/pflanze/lsp-mode lsp-mode 7b0da2ffc4761fc26e51f68748895242cdc94c36
+
+
+rust: lsp
+
+
 julia: .emacs.d/julia-emacs
 
 .emacs.d/julia-emacs: .emacs.d/julia-emacs/julia-mode.el
