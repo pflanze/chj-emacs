@@ -339,23 +339,55 @@ it is put to the start of the list."
         nil
         p)))
 
+(defun cj-display-height->window-height (pixels)
+  (- pixels
+     ;; bar and desktop toolbar
+     80
+     ;; window decoration and menu bar, or something
+     25))
+
 ;; Maps (display-pixel-width . display-pixel-height) to
 ;; (geometry-width . geometry-height)
 (defun cj-default-geometry (display-dimensions)
-  (cons 104 ;; 4 for the line numbering
-        (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 41.0)) 1)))
+  (let* ((display-height-pixels (cdr display-dimensions))
+         (window-height-pixels (cj-display-height->window-height display-height-pixels))
+         (char-height-pixels (frame-char-height))
+         (window-height-lines (/ window-height-pixels char-height-pixels)))
+    (cons 104 ;; 4 for the line numbering
+          window-height-lines)))
 
 (defun cj-update-geometry ()
   (if-let (dim (get-x-display-dimensions))
-          (let ((geom (cj-default-geometry dim)))
-            ;; Use destructive alist-set! because make-frame is copying the
-            ;; mappings *before* running the before-make-frame-hook:
-            (alist-set!sym 'default-frame-alist
-                           'width
-                           (car geom))
-            (alist-set!sym 'default-frame-alist
-                           'height
-                           (cdr geom)))))
+          (progn
+           ;; (let ((geom (cj-default-geometry dim)))
+           ;;   ;; Use destructive alist-set! because make-frame is copying the
+           ;;   ;; mappings *before* running the before-make-frame-hook:
+           ;;   (alist-set!sym 'default-frame-alist
+           ;;                  'width
+           ;;                  (car geom))
+           ;;   (alist-set!sym 'default-frame-alist
+           ;;                  'height
+           ;;                  (cdr geom)))
+           ;; But frame-char-height does not always get the info. So:
+           
+           ;; In pixels from the start:
+           (let* ((geom (cj-default-geometry dim))
+                  (width 700)
+                  (height (cj-display-height->window-height (car dim))))
+             ;; This can't be called from here it it makes a new frame
+             ;; additionally to the newly created one
+             ;; (set-frame-size (selected-frame)
+             ;;                 width
+             ;;                 height
+             ;;                 t)
+
+             ;; So:
+             (alist-set!sym 'initial-frame-alist
+                            'width
+                            width)
+             (alist-set!sym 'initial-frame-alist
+                            'height
+                            height)))))
 
 ;; Ensure the mappings exist before running emacsclient the first
 ;; time, so that destructive alist-set! will actually be destructive:
