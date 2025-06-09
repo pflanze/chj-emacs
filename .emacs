@@ -339,61 +339,29 @@ it is put to the start of the list."
         nil
         p)))
 
-(defun cj-display-height->window-height (pixels)
-  (- pixels
-     ;; bar and desktop toolbar
+(defvar cj-frame-width 850)
+(defvar cj-frame-height-margin
+  (+ ;; bar and desktop toolbar
      80
      ;; window decoration and menu bar, or something
-     25))
+     35))
 
-;; Maps (display-pixel-width . display-pixel-height) to
-;; (geometry-width . geometry-height)
-(defun cj-default-geometry (display-dimensions)
-  (let* ((display-height-pixels (cdr display-dimensions))
-         (window-height-pixels (cj-display-height->window-height display-height-pixels))
-         (char-height-pixels (frame-char-height))
-         (window-height-lines (/ window-height-pixels char-height-pixels)))
-    (cons 104 ;; 4 for the line numbering
-          window-height-lines)))
-
-(defun cj-update-geometry ()
+(defun cj-update-geometry (frame)
   (if-let (dim (get-x-display-dimensions))
           (progn
-           ;; (let ((geom (cj-default-geometry dim)))
-           ;;   ;; Use destructive alist-set! because make-frame is copying the
-           ;;   ;; mappings *before* running the before-make-frame-hook:
-           ;;   (alist-set!sym 'default-frame-alist
-           ;;                  'width
-           ;;                  (car geom))
-           ;;   (alist-set!sym 'default-frame-alist
-           ;;                  'height
-           ;;                  (cdr geom)))
-           ;; But frame-char-height does not always get the info. So:
-           
-           ;; In pixels from the start:
-           (let* ((geom (cj-default-geometry dim))
-                  (width 700)
-                  (height (cj-display-height->window-height (cdr dim))))
-             ;; This can't be called from here it it makes a new frame
-             ;; additionally to the newly created one
-             ;; (set-frame-size (selected-frame)
-             ;;                 width
-             ;;                 height
-             ;;                 t)
+           (let* ((width cj-frame-width)
+                  (height (- (cdr dim) cj-frame-height-margin)))
+             (set-frame-size frame
+                             width
+                             height
+                             t)
+             (make-frame-visible frame))
+           ;; For subsequent frames, to avoid flickering, start hidden
+           (add-to-list 'default-frame-alist '(visibility . nil))
+           )))
 
-             ;; So:
-             (alist-set!sym 'initial-frame-alist
-                            'width
-                            width)
-             (alist-set!sym 'initial-frame-alist
-                            'height
-                            height)))))
+(add-hook 'after-make-frame-functions #'cj-update-geometry)
 
-;; Ensure the mappings exist before running emacsclient the first
-;; time, so that destructive alist-set! will actually be destructive:
-;;(cj-update-geometry)
-
-(add-hook 'before-make-frame-hook 'cj-update-geometry)
 
 ;; ==== parenface ==================================================
 ;; (von http://foldr.org/~michaelw/log/programming/lisp/lispin von haskell.org)
