@@ -373,7 +373,7 @@ it is put to the start of the list."
            ;; In pixels from the start:
            (let* ((geom (cj-default-geometry dim))
                   (width 700)
-                  (height (cj-display-height->window-height (car dim))))
+                  (height (cj-display-height->window-height (cdr dim))))
              ;; This can't be called from here it it makes a new frame
              ;; additionally to the newly created one
              ;; (set-frame-size (selected-frame)
