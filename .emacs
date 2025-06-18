@@ -697,21 +697,11 @@ mod tests {
 (defun cj-first-sorted (items access cmp)
   (car (cj-sort items access cmp)))
 
-(let* ((clangds (file-expand-wildcards "/usr/bin/clangd-*"))
-       (clangd (cj-first-sorted clangds 'cj-path-version '>)))
-  (if clangd
-      (progn
-       (setq cj-clangd clangd)
-       (setq lsp-clangd-binary-path cj-clangd))
-      (progn
-       (setq cj-clangd nil)
-       (warn "missing clangd, install one at /usr/bin/clangd-*"))))
-
 (add-hook 'c++-mode-hook 'lsp-deferred)
 ;; and, stupid lsp, override it again after it loaded?
 (add-hook 'c++-mode-hook (lambda ()
-                           (if cj-clangd
-                               (setq lsp-clangd-binary-path cj-clangd))))
+                           (setq lsp-clients-clangd-args '("--background-index"))
+                           (setq lsp-clangd-binary-path "clangd")))
 
 
 ;; === Haskell ============================================
