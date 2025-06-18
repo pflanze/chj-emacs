@@ -23,6 +23,7 @@
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
  '(mouse-yank-at-point t)
+ '(package-selected-packages '(company lsp-mode rust-mode treesit-auto))
  '(paren-mode 'paren nil (paren))
  '(pc-select-selection-keys-only t)
  '(pc-selection-mode t)
