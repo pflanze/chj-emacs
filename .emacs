@@ -23,7 +23,7 @@
  '(mouse-wheel-follow-mouse t)
  '(mouse-wheel-mode t nil (mwheel))
  '(mouse-yank-at-point t)
- '(package-selected-packages '(company lsp-mode rust-mode treesit-auto))
+ '(package-selected-packages '(company rust-mode treesit-auto))
  '(paren-mode 'paren nil (paren))
  '(pc-select-selection-keys-only t)
  '(pc-selection-mode t)
@@ -663,10 +663,24 @@ it is put to the start of the list."
 
 ;; === Rust ===============================================
 
-(add-hook 'rust-mode-hook 'lsp-deferred)
+(add-hook 'rust-mode-hook (lambda()
+                            (eglot-ensure)
+                            ;; does not work: (eglot-inlay-hints-mode -1)
+                            (company-mode)))
 
-(setq lsp-rust-analyzer-cargo-auto-reload nil)
-(setq lsp-rust-analyzer-proc-macro-enable t)
+
+;; Pure GPT
+(defun my-eglot-disable-inlay-hints-once ()
+  "Disable inlay hints in the current buffer and remove this hook locally.
+This sets the default state to off when eglot starts, but it won’t prevent
+you from toggling eglot-inlay-hints-mode interactively later."
+  (eglot-inlay-hints-mode -1)
+  ;; Remove this hook from the current buffer (LOCAL)
+  (remove-hook 'eglot-managed-mode-hook #'my-eglot-disable-inlay-hints-once t))
+
+(add-hook 'eglot-managed-mode-hook #'my-eglot-disable-inlay-hints-once)
+
+
 
 (defun cj-insert-rust-test-template ()
   (interactive)
@@ -697,11 +711,8 @@ mod tests {
 (defun cj-first-sorted (items access cmp)
   (car (cj-sort items access cmp)))
 
-(add-hook 'c++-mode-hook 'lsp-deferred)
-;; and, stupid lsp, override it again after it loaded?
-(add-hook 'c++-mode-hook (lambda ()
-                           (setq lsp-clients-clangd-args '("--background-index"))
-                           (setq lsp-clangd-binary-path "clangd")))
+(add-hook 'c++-mode-hook 'eglot-ensure)
+(add-hook 'c++-mode-hook 'company-mode)
 
 
 ;; === Haskell ============================================
