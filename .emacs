@@ -124,6 +124,17 @@
   (move-to-column (- (current-column) 1)))
 
 
+;; set ctrl-shift-leftclick to xref-find-definitions (gpt)
+(define-key global-map [C-S-mouse-1]
+  (lambda (event)
+    (interactive "e")
+    (mouse-set-point event) ; move point to click location
+    (let ((sym (thing-at-point 'symbol t)))
+      (if sym
+          (xref-find-definitions sym)
+          (message "No symbol at point")))))
+
+
 (global-set-key "\M-g" 'goto-line)
 (global-set-key '[f1] 'cj-doublequote)
 
