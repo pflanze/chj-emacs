@@ -352,29 +352,29 @@ it is put to the start of the list."
         nil
         p)))
 
-;; Maps (display-pixel-width . display-pixel-height) to
-;; (geometry-width . geometry-height)
-(defun cj-default-geometry (display-dimensions)
-  (cons 104 ;; 4 for the line numbering
-        (+ (floor (* (/ (- (cdr display-dimensions) 125) 925.0) 41.0)) 1)))
+(defvar cj-frame-width 850)
+(defvar cj-frame-height-margin
+  (+ ;; bar and desktop toolbar
+     80
+     ;; window decoration and menu bar, or something
+     35))
 
-(defun cj-update-geometry ()
+(defun cj-update-geometry (frame)
   (if-let (dim (get-x-display-dimensions))
-          (let ((geom (cj-default-geometry dim)))
-            ;; Use destructive alist-set! because make-frame is copying the
-            ;; mappings *before* running the before-make-frame-hook:
-            (alist-set!sym 'default-frame-alist
-                           'width
-                           (car geom))
-            (alist-set!sym 'default-frame-alist
-                           'height
-                           (cdr geom)))))
+          (progn
+           (let* ((width cj-frame-width)
+                  (height (- (cdr dim) cj-frame-height-margin)))
+             (set-frame-size frame
+                             width
+                             height
+                             t)
+             (make-frame-visible frame))
+           ;; For subsequent frames, to avoid flickering, start hidden
+           (add-to-list 'default-frame-alist '(visibility . nil))
+           )))
 
-;; Ensure the mappings exist before running emacsclient the first
-;; time, so that destructive alist-set! will actually be destructive:
-;;(cj-update-geometry)
+(add-hook 'after-make-frame-functions #'cj-update-geometry)
 
-(add-hook 'before-make-frame-hook 'cj-update-geometry)
 
 ;; ==== parenface ==================================================
 ;; (von http://foldr.org/~michaelw/log/programming/lisp/lispin von haskell.org)
@@ -943,4 +943,16 @@ mod tests {
 ;; Uncomment if using abbreviations
 ;(abbrev-mode t)
 
+
+;; =======================================================================
+
+(require 'ansi-color)
+
+;; https://stackoverflow.com/questions/23378271/how-do-i-display-ansi-color-codes-in-emacs-for-any-mode
+(defun display-ansi-colors ()
+  "Display ANSI colors in the current buffer (even if read-only)."
+  (interactive)
+  ;; inhibit-read-only to apply colors to read-only buffers (e.g., log files)
+  (let ((inhibit-read-only t))
+    (ansi-color-apply-on-region (point-min) (point-max) t)))
 
