@@ -1,4 +1,18 @@
-default: julia haskell
+default: rust
+#default: julia haskell
+
+
+lsp: .emacs.d/lsp-mode .emacs.d/yasnippet
+.emacs.d/lsp-mode: .emacs.d/lsp-mode/lsp-mode.el
+.emacs.d/lsp-mode/lsp-mode.el:
+	sbin/git-clone-commit https://github.com/pflanze/lsp-mode lsp-mode 7b0da2ffc4761fc26e51f68748895242cdc94c36
+
+.emacs.d/yasnippet: .emacs.d/yasnippet/yasnippet.el
+.emacs.d/yasnippet/yasnippet.el:
+	sbin/apt-install-and-symlink-dir elpa-yasnippet yasnippet.el .emacs.d/yasnippet elpa-yasnippet
+
+
+rust: lsp
 
 
 julia: .emacs.d/julia-emacs
