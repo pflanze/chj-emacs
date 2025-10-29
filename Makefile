@@ -12,7 +12,7 @@ lsp: .emacs.d/lsp-mode .emacs.d/yasnippet
 	sbin/apt-install-and-symlink-dir elpa-yasnippet yasnippet.el .emacs.d/yasnippet elpa-yasnippet
 
 
-rust: lsp
+rust:
 
 
 julia: .emacs.d/julia-emacs
