@@ -352,7 +352,7 @@ it is put to the start of the list."
         nil
         p)))
 
-(defvar cj-frame-width 850)
+(defvar cj-frame-width 1097)
 (defvar cj-frame-height-margin
   (+ ;; bar and desktop toolbar
      80
