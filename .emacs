@@ -38,6 +38,7 @@
  '(warning-suppress-types '((comp))))
 
 (blink-cursor-mode 0)
+(global-auto-revert-mode 1)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
