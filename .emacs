@@ -18,7 +18,7 @@
  '(current-language-environment "UTF-8")
  '(default-input-method "rfc1345")
  '(delete-selection-mode t nil (delsel))
- '(fill-column 90)
+ '(fill-column 80)
  '(global-font-lock-mode t nil (font-lock))
  '(kill-whole-line t)
  '(mouse-wheel-follow-mouse t)
